@@ -1,0 +1,26 @@
+C:\Users\emanuel\documents\visual studio 2010\Projects\IETest\IExplorerControlsTest\obj\x86\Debug\Interop.SHDocVw.dll
+C:\Users\emanuel\documents\visual studio 2010\Projects\IETest\IExplorerControlsTest\obj\x86\Debug\IExplorerControlsTest.csproj.ResolveComReference.cache
+C:\Users\emanuel\documents\visual studio 2010\Projects\IETest\IExplorerControlsTest\bin\Debug\IExplorerControlsTest.exe
+C:\Users\emanuel\documents\visual studio 2010\Projects\IETest\IExplorerControlsTest\bin\Debug\IExplorerControlsTest.pdb
+C:\Users\emanuel\documents\visual studio 2010\Projects\IETest\IExplorerControlsTest\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\emanuel\documents\visual studio 2010\Projects\IETest\IExplorerControlsTest\obj\x86\Debug\IExplorerControlsTest.Properties.Resources.resources
+C:\Users\emanuel\documents\visual studio 2010\Projects\IETest\IExplorerControlsTest\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\emanuel\documents\visual studio 2010\Projects\IETest\IExplorerControlsTest\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\emanuel\documents\visual studio 2010\Projects\IETest\IExplorerControlsTest\obj\x86\Debug\IExplorerControlsTest.exe
+C:\Users\emanuel\documents\visual studio 2010\Projects\IETest\IExplorerControlsTest\obj\x86\Debug\IExplorerControlsTest.pdb
+C:\Users\emanuel\documents\visual studio 2010\Projects\IETest\IExplorerControlsTest\obj\x86\Debug\IExplorerControlsTest.Form1.resources
+C:\Users\emanuel\documents\visual studio 2010\Projects\IETest\IExplorerControlsTest\bin\Debug\Interop.SHDocVw.dll
+C:\Users\emanuel\documents\visual studio 2010\Projects\IETest\IExplorerControlsTest\bin\Debug\ExcelLibrary.dll
+D:\EmiTest\obj\x86\Debug\Interop.SHDocVw.dll
+D:\EmiTest\obj\x86\Debug\IExplorerControlsTest.csproj.ResolveComReference.cache
+D:\EmiTest\obj\x86\Debug\IExplorerControlsTest.exe
+D:\EmiTest\obj\x86\Debug\IExplorerControlsTest.pdb
+D:\EmiTest\bin\Debug\IExplorerControlsTest.exe
+D:\EmiTest\bin\Debug\IExplorerControlsTest.pdb
+D:\EmiTest\bin\Debug\ExcelLibrary.dll
+D:\EmiTest\bin\Debug\Interop.SHDocVw.dll
+D:\EmiTest\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\EmiTest\obj\x86\Debug\IExplorerControlsTest.Form1.resources
+D:\EmiTest\obj\x86\Debug\IExplorerControlsTest.Properties.Resources.resources
+D:\EmiTest\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\EmiTest\obj\x86\Debug\GenerateResource.write.1.tlog

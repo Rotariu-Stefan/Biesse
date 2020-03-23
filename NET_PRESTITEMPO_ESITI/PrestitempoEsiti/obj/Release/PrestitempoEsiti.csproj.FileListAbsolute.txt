@@ -1,0 +1,43 @@
+D:\Andrei\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\PrestitempoEsiti.exe.config
+D:\Andrei\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\PrestitempoEsiti.exe
+D:\Andrei\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\PrestitempoEsiti.pdb
+D:\Andrei\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\Microsoft.Office.Interop.Excel.dll
+D:\Andrei\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\Microsoft.Vbe.Interop.dll
+D:\Andrei\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\office.dll
+D:\Andrei\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\ResolveAssemblyReference.cache
+D:\Andrei\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoInserimento.Configurazione.resources
+D:\Andrei\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoEsiti.Properties.Resources.resources
+D:\Andrei\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoInserimento.ReportMonForm.resources
+D:\Andrei\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoEsiti.csproj.GenerateResource.Cache
+D:\Andrei\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoEsiti.exe
+D:\Andrei\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoEsiti.pdb
+D:\OCTAV\pentru svn\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\PrestitempoEsiti.exe.config
+D:\OCTAV\pentru svn\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\PrestitempoEsiti.exe
+D:\OCTAV\pentru svn\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\PrestitempoEsiti.pdb
+D:\OCTAV\pentru svn\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\Microsoft.Office.Interop.Excel.dll
+D:\OCTAV\pentru svn\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\ResolveAssemblyReference.cache
+D:\OCTAV\pentru svn\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoInserimento.Configurazione.resources
+D:\OCTAV\pentru svn\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoEsiti.Properties.Resources.resources
+D:\OCTAV\pentru svn\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoInserimento.ReportMonForm.resources
+D:\OCTAV\pentru svn\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoEsiti.csproj.GenerateResource.Cache
+D:\OCTAV\pentru svn\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoEsiti.exe
+D:\OCTAV\pentru svn\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoEsiti.pdb
+D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\PrestitempoEsiti.exe.config
+D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoEsiti.exe
+D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoEsiti.pdb
+D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\PrestitempoEsiti.exe
+D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\PrestitempoEsiti.pdb
+D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\Microsoft.Office.Interop.Excel.dll
+D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\office.dll
+D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\Microsoft.Vbe.Interop.dll
+D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\Microsoft.Office.Interop.Excel.xml
+D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\office.xml
+D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\ResolveAssemblyReference.cache
+D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoInserimento.Configurazione.resources
+D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoEsiti.Properties.Resources.resources
+D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoInserimento.ReportMonForm.resources
+D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\ResGen.read.1.tlog
+D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\ResGen.write.1.tlog
+G:\WK\o\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\bin\Release\PrestitempoEsiti.exe.config
+G:\WK\o\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoEsiti.exe
+G:\WK\o\NET_PRESTITEMPO_ESITI\PrestitempoEsiti\obj\Release\PrestitempoEsiti.pdb

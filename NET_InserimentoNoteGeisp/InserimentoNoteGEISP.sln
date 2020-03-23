@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InserimentoNoteGEISP", "InserimentoNoteGEISP\InserimentoNoteGEISP.csproj", "{8021EC67-032F-4383-99B9-FE84CAC3CE29}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "InserimentoNoteGEISPSetup", "InserimentoNoteGEISPSetup\InserimentoNoteGEISPSetup.vdproj", "{F9638239-7136-48C2-809D-F8CB17ACCFE1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8021EC67-032F-4383-99B9-FE84CAC3CE29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8021EC67-032F-4383-99B9-FE84CAC3CE29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8021EC67-032F-4383-99B9-FE84CAC3CE29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8021EC67-032F-4383-99B9-FE84CAC3CE29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9638239-7136-48C2-809D-F8CB17ACCFE1}.Debug|Any CPU.ActiveCfg = Debug
+		{F9638239-7136-48C2-809D-F8CB17ACCFE1}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

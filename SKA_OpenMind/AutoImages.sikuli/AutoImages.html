@@ -1,0 +1,285 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>AutoImages.sikuli\AutoImages.sikuli</h2> <a href="AutoImages.sikuli\AutoImages.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">from</span> sikuli <span class="kw">import</span> *
+<span class="kw">from</span> time <span class="kw">import</span> strftime
+<span class="kw">import</span> os
+
+<span class="kw">class</span> Regions():
+
+    regDict = {}
+
+    @staticmethod
+    <span class="kw">def</span> addRegion(name, dreg):
+        Regions.regDict[name] = dreg
+
+    @staticmethod
+    <span class="kw">def</span> getRegion(name):
+        <span class="kw">return</span> Regions.regDict[name]
+
+    <span class="cmt">#gets the window region of an open application(or None if the no big enough window is found)
+</span>    @staticmethod
+    <span class="kw">def</span> getWindow(appname):
+        a=App.focus(appname)
+        i=<span class="dig">0</span>
+        appw=a.window(i)
+        <span class="kw">while</span>(appw):
+            <span class="kw">if</span> appw.w&gt;getW()/<span class="dig">2</span> <span class="kw">and</span> appw.h&gt;getH()/<span class="dig">2</span>:
+                <span class="kw">return</span> appw
+            i+=<span class="dig">1</span>
+            appw=a.window(i)
+        <span class="kw">return</span> None
+
+    @staticmethod
+    <span class="kw">def</span> createRegs(appname):
+        Regions.addRegion(<span class="str">"rall"</span>,Region(<span class="dig">0</span>,<span class="dig">0</span>,getW(),getH()))
+        Regions.addRegion(<span class="str">"rstarticon"</span>,Region(<span class="dig">0</span>,getH()-<span class="dig">100</span>,<span class="dig">100</span>,<span class="dig">100</span>))
+
+        rwin=Regions.getWindow(appname)
+        Regions.addRegion(<span class="str">"rwindow"</span>,rwin)
+        Regions.addRegion(<span class="str">"rrow1"</span>,Region(rwin.x, rwin.y+<span class="dig">220</span>, <span class="dig">325</span>, rwin.h-<span class="dig">280</span>))
+        Regions.addRegion(<span class="str">"rrow2"</span>,Region(rwin.x+<span class="dig">325</span>, rwin.y+<span class="dig">220</span>, <span class="dig">275</span>, rwin.h-<span class="dig">280</span>))
+        Regions.addRegion(<span class="str">"rrow3"</span>,Region(rwin.x+<span class="dig">600</span>, rwin.y+<span class="dig">220</span>, <span class="dig">275</span>, rwin.h-<span class="dig">280</span>))
+        Regions.addRegion(<span class="str">"rrow3ex"</span>,Region(rwin.x+<span class="dig">600</span>, rwin.y+<span class="dig">220</span>, rwin.w-<span class="dig">600</span>, rwin.h-<span class="dig">280</span>))
+        Regions.addRegion(<span class="str">"rrows"</span>,Region(rwin.x, rwin.y+<span class="dig">220</span>, rwin.w, rwin.h-<span class="dig">280</span>))
+        Regions.addRegion(<span class="str">"rtop"</span>,Region(rwin.x, rwin.y, rwin.w, <span class="dig">125</span>))
+        Regions.addRegion(<span class="str">"rmenu"</span>,Region(rwin.x, rwin.y+<span class="dig">100</span>, rwin.w, <span class="dig">190</span>))
+        Regions.addRegion(<span class="str">"rbottom"</span>,Region(rwin.x, rwin.y+rwin.h-<span class="dig">85</span>, rwin.w, <span class="dig">85</span>))
+        Regions.addRegion(<span class="str">"rmidcol"</span>,Region(rwin.x+rwin.w/<span class="dig">4</span>, rwin.y, rwin.w/<span class="dig">2</span>, rwin.h))
+        Regions.addRegion(<span class="str">"rmid"</span>,Region(rwin.x+rwin.w/<span class="dig">4</span>, rwin.y+rwin.h/<span class="dig">4</span>, rwin.w/<span class="dig">2</span>, rwin.h/<span class="dig">2</span>))
+
+        Regions.pagepoint=Location(rwin.x+<span class="dig">10</span>, rwin.y+rwin.h/<span class="dig">2</span>)
+
+<span class="kw">class</span> AutoImages():
+
+    imgDict = {}
+
+    @staticmethod
+    <span class="kw">def</span> addImage(name, img):
+        AutoImages.imgDict[name] = img
+
+    @staticmethod
+    <span class="kw">def</span> getImage(name):
+        <span class="kw">return</span> AutoImages.imgDict[name]
+
+    @staticmethod
+    <span class="kw">def</span> loadImages():
+        AutoImages.addImage(<span class="str">"crmlogged"</span>, <img src="FileEditView.png" />)
+        AutoImages.addImage(<span class="str">"citrixLogo"</span>, <img src="GtrixDesktop.png" />)
+        AutoImages.addImage(<span class="str">"citrixLogo2"</span>, <img src="ECitrixDeskt.png" />)
+        AutoImages.addImage(<span class="str">"citrixCom"</span>, <img src="1375861368050.png" />)
+        AutoImages.addImage(<span class="str">"citrixClose"</span>, <img src="7.png" />)
+        AutoImages.addImage(<span class="str">"start"</span>,<img src="start.png" />)
+        AutoImages.addImage(<span class="str">"LogOff"</span>, <img src="LogOff.png" />)
+        AutoImages.addImage(<span class="str">"programs"</span>, <img src="programs.png" />)
+        AutoImages.addImage(<span class="str">"crmaffari"</span>, <img src="crmaffari.png" />)
+        AutoImages.addImage(<span class="str">"usernameAffari"</span>, Pattern(<img src="usernameAffari.png" />).targetOffset(<span class="dig">48</span>,-<span class="dig">1</span>))
+        AutoImages.addImage(<span class="str">"rememberPasswordAffari"</span>, <img src="rememberPasswordAffari.png" />)
+        AutoImages.addImage(<span class="str">"secureIntCon"</span>, <img src="secureIntCon.png" />)
+        AutoImages.addImage(<span class="str">"welcomeBack"</span>, <img src="welcomeBack.png" />)
+        AutoImages.addImage(<span class="str">"closeLayer"</span>, <img src="closeLayer.png" />)
+        AutoImages.addImage(<span class="str">"clienti"</span>, <img src="clienti.png" />)
+        AutoImages.addImage(<span class="str">"pivaField"</span>, Pattern(<img src="pivaField.png" />).targetOffset(<span class="dig">46</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"codiceFiscaleField"</span>, Pattern(<img src="codiceFiscaleField.png" />).targetOffset(<span class="dig">49</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"clientiCerca"</span>, <img src="clientiCerca.png" />)
+        AutoImages.addImage(<span class="str">"cfpivaNonEsiste"</span>, Pattern(<img src="cfpivaNonEsiste.png" />).targetOffset(-<span class="dig">62</span>,<span class="dig">22</span>))
+        AutoImages.addImage(<span class="str">"naturaCliente"</span>, Pattern(<img src="naturaCliente.png" />).targetOffset(<span class="dig">56</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"giuridica"</span>, Pattern(<img src="NaturaGiurid.png" />).targetOffset(<span class="dig">70</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"siglaceva"</span>, Pattern(<img src="SiglaPrcvinc.png" />).targetOffset(<span class="dig">92</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"piva"</span>, Pattern(<img src="piva.png" />).targetOffset(<span class="dig">38</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"partTopSedeLegale"</span>, Pattern(<img src="partTopSedeLegale.png" />).targetOffset(<span class="dig">69</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"viaSedeLegale"</span>, Pattern(<img src="viaSedeLegale.png" />).similar(<span class="dig">0.94</span>).targetOffset(<span class="dig">49</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"civicoSedeLegale"</span>, Pattern(<img src="civicoSedeLegale.png" />).targetOffset(<span class="dig">59</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"datiUtente"</span>, Pattern(<img src="datiUtente.png" />).targetOffset(<span class="dig">0</span>,<span class="dig">19</span>))
+        AutoImages.addImage(<span class="str">"prefissoContatto"</span>, Pattern(<img src="prefissoContatto.png" />).targetOffset(<span class="dig">60</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"accettaDatiUtente"</span>, <img src="Accetta Dati Utente.png" />)
+        AutoImages.addImage(<span class="str">"certifica"</span>, <img src="certifica.png" />)
+        AutoImages.addImage(<span class="str">"accettaDatiACLI"</span>, <img src="Accetta Dati ACLI.png" />)
+        AutoImages.addImage(<span class="str">"indirizziHover"</span>, <img src="1372686649747.png" />)
+        AutoImages.addImage(<span class="str">"indirizzi"</span>, <img src="Indirizzi-1.png" />)
+        AutoImages.addImage(<span class="str">"indirizziStart"</span>, Pattern(<img src="Indirizzi.png" />).targetOffset(-<span class="dig">62</span>,<span class="dig">53</span>))
+        AutoImages.addImage(<span class="str">"nuovo"</span>, <img src="nuovo.png" />)
+        AutoImages.addImage(<span class="str">"referenti"</span>, <img src="referenti.png" />)
+        AutoImages.addImage(<span class="str">"referentiSel"</span>, <img src="Rcfcrcnti.png" />)
+        AutoImages.addImage(<span class="str">"acquisizioneConsensi"</span>, <img src="acquisizioneConsensi.png" />)
+        AutoImages.addImage(<span class="str">"consensoP1mobile"</span>, Pattern(<img src="consensoP1Mobile.png" />).targetOffset(<span class="dig">120</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"billingAccount"</span>, <img src="billingAccount.png" />)
+        AutoImages.addImage(<span class="str">"billingSel"</span>, <img src="BillingAccou.png" />)
+        AutoImages.addImage(<span class="str">"modalitaDiPagamento"</span>, Pattern(<img src="modalitaDiPagamento.png" />).targetOffset(-<span class="dig">41</span>,<span class="dig">22</span>))
+        AutoImages.addImage(<span class="str">"termScadenzaFattura"</span>, Pattern(<img src="1373961803186.png" />).targetOffset(<span class="dig">86</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"selectPopUp"</span>, <img src="selectPopUp.png" />)
+        AutoImages.addImage(<span class="str">"selectPopUp2"</span>, Pattern(<img src="selectPopUp.png" />).similar(<span class="dig">0.81</span>))
+        AutoImages.addImage(<span class="str">"refCanale"</span>, Pattern(<img src="EanalediComu.png" />).targetOffset(-<span class="dig">32</span>,<span class="dig">23</span>))
+        AutoImages.addImage(<span class="str">"refUnchecked"</span>, <img src="1375791779675.png" />)
+        AutoImages.addImage(<span class="str">"conferma"</span>, <img src="Conferma.png" />)
+        AutoImages.addImage(<span class="str">"contratti"</span>, <img src="Contratti.png" />)
+        AutoImages.addImage(<span class="str">"contrattiSel"</span>, <img src="Ccntratti.png" />)
+        AutoImages.addImage(<span class="str">"ppcfa"</span>, Pattern(<img src="CFA-1.png" />).targetOffset(<span class="dig">61</span>,<span class="dig">1</span>))
+        AutoImages.addImage(<span class="str">"dataStipula"</span>, Pattern(<img src="DataStipula.png" />).targetOffset(-<span class="dig">26</span>,<span class="dig">21</span>))
+        AutoImages.addImage(<span class="str">"nrContratto"</span>, Pattern(<img src="NumeroContra.png" />).targetOffset(-<span class="dig">35</span>,<span class="dig">22</span>))
+        AutoImages.addImage(<span class="str">"opzionePros"</span>, Pattern(<img src="OpzioneProsp.png" />).targetOffset(<span class="dig">84</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"cognome"</span>, Pattern(<img src="Cugnome.png" />).targetOffset(-<span class="dig">21</span>,<span class="dig">19</span>))
+        AutoImages.addImage(<span class="str">"tipologiaRef"</span>, Pattern(<img src="TipologiaRef.png" />).targetOffset(<span class="dig">145</span>,-<span class="dig">1</span>))
+        AutoImages.addImage(<span class="str">"offerte"</span>, <img src="Offertc.png" />)
+        AutoImages.addImage(<span class="str">"ordini"</span>, Pattern(<img src="OffcrtcIOrdi.png" />).targetOffset(<span class="dig">30</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"ordiniSel"</span>, <img src="Drdini.png" />)
+        AutoImages.addImage(<span class="str">"condiceOrdine"</span>, Pattern(<img src="CcdiceDrdinc.png" />).targetOffset(-<span class="dig">22</span>,<span class="dig">22</span>))
+        AutoImages.addImage(<span class="str">"pisi"</span>, Pattern(<img src="PI.png" />).targetOffset(<span class="dig">29</span>,-<span class="dig">1</span>))
+        AutoImages.addImage(<span class="str">"nuovoServ"</span>, <img src="NuovoServizi.png" />)
+        AutoImages.addImage(<span class="str">"esegui"</span>, <img src="Esooui.png" />)
+        AutoImages.addImage(<span class="str">"clickPopUp"</span>, Pattern(<img src="OKChiudi.png" />).targetOffset(-<span class="dig">24</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"configura"</span>, <img src="Contiuura.png" />)
+        AutoImages.addImage(<span class="str">"secyes"</span>, Pattern(<img src="YeNoMmeInfu.png" />).targetOffset(-<span class="dig">83</span>,<span class="dig">2</span>))
+        AutoImages.addImage(<span class="str">"iniziative"</span>, <img src="1375972843758.png" />)
+        AutoImages.addImage(<span class="str">"tipovendita"</span>, Pattern(<img src="llilYJfflILI.png" />).targetOffset(<span class="dig">0</span>,<span class="dig">30</span>))
+        AutoImages.addImage(<span class="str">"aggiungi"</span>, <img src="Aggiungi.png" />)
+        AutoImages.addImage(<span class="str">"datiSpedizione"</span>, <img src="DatiSpedizic.png" />)
+        AutoImages.addImage(<span class="str">"attivita"</span>, <img src="Attivit.png" />)
+        AutoImages.addImage(<span class="str">"documenti"</span>, <img src="Dcacumanti.png" />)
+        AutoImages.addImage(<span class="str">"allegaFile"</span>, <img src="AlleqaFile.png" />)
+        AutoImages.addImage(<span class="str">"repozitory"</span>, <img src="1376045490551.png" />)
+        AutoImages.addImage(<span class="str">"condiceOrdine2"</span>, Pattern(<img src="CcdiceOrdinc.png" />).targetOffset(<span class="dig">66</span>,-<span class="dig">1</span>))
+        AutoImages.addImage(<span class="str">"invio"</span>, <img src="Invic.png" />)
+        AutoImages.addImage(<span class="str">"continua"</span>, <img src="FIC0nUnua.png" />)
+        AutoImages.addImage(<span class="str">"referentiStart"</span>, Pattern(<img src="Referenti-1.png" />).targetOffset(-<span class="dig">66</span>,<span class="dig">53</span>))
+        AutoImages.addImage(<span class="str">"tiporefStart"</span>, Pattern(<img src="TipologiaRef-1.png" />).targetOffset(-<span class="dig">103</span>,<span class="dig">48</span>))
+        AutoImages.addImage(<span class="str">"indppStart"</span>, Pattern(<img src="QIndirizziMi.png" />).targetOffset(-<span class="dig">39</span>,<span class="dig">53</span>))
+        AutoImages.addImage(<span class="str">"refppStart"</span>, Pattern(<img src="NuovoI.png" />).targetOffset(-<span class="dig">30</span>,<span class="dig">50</span>))
+        AutoImages.addImage(<span class="str">"billppStart"</span>, Pattern(<img src="iBillingAcco.png" />).targetOffset(-<span class="dig">44</span>,<span class="dig">52</span>))
+        AutoImages.addImage(<span class="str">"modalitaHeader"</span>, <img src="McdalitdiPau.png" />)
+        AutoImages.addImage(<span class="str">"paese"</span>, Pattern(<img src="Paese.png" />).targetOffset(<span class="dig">39</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"ricercaABI"</span>, <img src="1111.png" />)
+        AutoImages.addImage(<span class="str">"rABIdown"</span>, Pattern(<img src="2AVI.png" />).targetOffset(<span class="dig">0</span>,<span class="dig">85</span>))
+        AutoImages.addImage(<span class="str">"CFA"</span>, Pattern(<img src="CFA.png" />).targetOffset(<span class="dig">63</span>,<span class="dig">0</span>))
+        <span class="cmt">#AutoImages.addImage("consensoI2", Pattern("CcnsensoI2Mo.png").targetOffset(132,0))    #PROLLY NU TREBE
+</span>        <span class="cmt">#AutoImages.addImage("opFail", Pattern("ConssnsoI2Mo.png").targetOffset(128,14))    #PROLLY NU TREBE
+</span>        <span class="cmt">#AutoImages.addImage("capclear", Pattern("CAP.png").targetOffset(40,1))            #DOAR DACA CLIPCLEAR FAIL
+</span>        AutoImages.addImage(<span class="str">"ciudi"</span>, Pattern(<img src="OKChiudi-1.png" />).targetOffset(<span class="dig">17</span>,-<span class="dig">1</span>))
+
+<span class="cmt">#sv-verifica existenta imagine
+</span><span class="kw">def</span> verifyExist(regiune, imagine, timp):
+    <span class="kw">if</span> exists(AutoImages.imgDict[imagine], timp):
+        <span class="kw">return</span> True
+    <span class="kw">else</span>:
+        <span class="kw">return</span> False
+
+<span class="cmt">#sv-verifica existenta imagine in regiune
+</span><span class="kw">def</span> verifyExistReg(regiune, imagine, timp):
+    <span class="kw">if</span> Regions.getRegion(regiune).exists(AutoImages.imgDict[imagine], timp):
+        <span class="kw">return</span> True
+    <span class="kw">else</span>:
+        <span class="kw">return</span> False
+
+<span class="cmt">#sv-ashtepta aparitia sau ERR
+</span><span class="kw">def</span> waitImage(regiune, imagine, timp):
+    <span class="kw">if</span> exists(AutoImages.imgDict[imagine], timp):
+        <span class="kw">return</span> <span class="str">"OK"</span>
+    <span class="kw">else</span>:
+        <span class="kw">raise</span> Exception(<span class="str">"Cannot find image '"</span> + imagine +<span class="str">"'!"</span>)
+
+<span class="cmt">#sv-ashtepta aparitia in regiune sau ERR
+</span><span class="kw">def</span> waitImageReg(regiune, imagine, timp):
+    <span class="kw">if</span> Regions.getRegion(regiune).exists(AutoImages.imgDict[imagine], timp):
+        <span class="kw">return</span> <span class="str">"OK"</span>
+    <span class="kw">else</span>:
+        <span class="kw">raise</span> Exception(<span class="str">"Cannot find image '"</span> + imagine +<span class="str">"'!"</span>)
+
+<span class="cmt">#sv-da click sau ERR    
+</span><span class="kw">def</span> tryClick(regiune,imagine,timp):
+    <span class="kw">try</span>:
+        <span class="skw">click</span>(<span class="skw">wait</span>(AutoImages.imgDict[imagine], timp))
+    <span class="kw">except</span>:
+        <span class="kw">raise</span> Exception(<span class="str">"Cannot click image '"</span> + imagine +<span class="str">"'!"</span>)
+
+<span class="cmt">#sv-da click in regiune sau ERR
+</span><span class="kw">def</span> tryClickReg(regiune,imagine,timp):
+    <span class="kw">try</span>:
+        <span class="skw">click</span>(Regions.getRegion(regiune).<span class="skw">wait</span>(AutoImages.imgDict[imagine], timp))
+    <span class="kw">except</span>:
+        <span class="kw">raise</span> Exception(<span class="str">"Region '"</span> + regiune + <span class="str">"' Cannot click image '"</span> + imagine +<span class="str">"'!"</span>)
+
+<span class="cmt">#sv-da click sau ERR    
+</span><span class="kw">def</span> trydClick(regiune,imagine,timp):
+    <span class="kw">try</span>:
+        <span class="skw">doubleClick</span>(<span class="skw">wait</span>(AutoImages.imgDict[imagine], timp))
+    <span class="kw">except</span>:
+        <span class="kw">raise</span> Exception(<span class="str">"Cannot click image '"</span> + imagine +<span class="str">"'!"</span>)
+
+<span class="cmt">#sv-da click in regiune sau ERR
+</span><span class="kw">def</span> trydClickReg(regiune,imagine,timp):
+    <span class="kw">try</span>:
+        <span class="skw">doubleClick</span>(Regions.getRegion(regiune).<span class="skw">wait</span>(AutoImages.imgDict[imagine], timp))
+    <span class="kw">except</span>:
+        <span class="kw">raise</span> Exception(<span class="str">"Region '"</span> + regiune + <span class="str">"' Cannot click image '"</span> + imagine +<span class="str">"'!"</span>)
+</pre>
+</body>
+</html>

@@ -1,0 +1,341 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>MiscFunctions.sikuli\MiscFunctions.sikuli</h2> <a href="MiscFunctions.sikuli\MiscFunctions.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">from</span> sikuli <span class="kw">import</span> *
+<span class="kw">from</span> time <span class="kw">import</span> strftime
+<span class="kw">from</span> xlwt <span class="kw">import</span> Workbook
+<span class="kw">from</span> xlrd <span class="kw">import</span> *
+<span class="kw">from</span> xlutils.copy <span class="kw">import</span> copy
+<span class="kw">from</span> java.awt.datatransfer <span class="kw">import</span> StringSelection
+<span class="kw">from</span> java.awt.datatransfer <span class="kw">import</span> Clipboard
+<span class="kw">from</span> java.awt <span class="kw">import</span> Toolkit
+<span class="kw">import</span> pickle
+<span class="kw">from</span> ftplib <span class="kw">import</span> FTP
+<span class="kw">import</span> AutoImages
+reload(AutoImages)
+<span class="kw">from</span> AutoImages <span class="kw">import</span> *
+myPath = os.path.abspath(os.path.join(getBundlePath(), os.pardir))
+
+<span class="kw">def</span> tab(tabNr, timeBetween=<span class="dig">0.5</span>):
+    <span class="kw">if</span> tabNr&lt;<span class="dig">0</span>:
+        tabNr=abs(tabNr)
+        <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>, tabNr):
+            <span class="skw">type</span>(Key.TAB, KeyModifier.SHIFT); <span class="skw">wait</span>(timeBetween)
+    <span class="kw">else</span>:
+        <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>, tabNr):
+            <span class="skw">type</span>(Key.TAB); <span class="skw">wait</span>(timeBetween)
+
+<span class="cmt">#sv-return tot textu Home-&gt;End
+</span><span class="kw">def</span> GetText():
+    <span class="skw">type</span>(Key.HOME); <span class="skw">wait</span>(<span class="dig">0.2</span>); <span class="skw">type</span>(Key.END, KeyModifier.SHIFT); <span class="skw">wait</span>(<span class="dig">0.2</span>)
+    <span class="kw">return</span> GetTextSel()
+
+<span class="cmt">#sv-return tot textu selectat deja
+</span><span class="kw">def</span> GetTextSel():
+    <span class="skw">type</span>(<span class="str">'c'</span>, KeyModifier.CTRL); <span class="skw">wait</span>(<span class="dig">0.2</span>)
+    text=Env.getClipboard(); <span class="skw">wait</span>(<span class="dig">0.2</span>)
+    toolkit = Toolkit.getDefaultToolkit()
+    toolkit.getSystemClipboard().setContents(StringSelection(<span class="str">""</span>), None)
+    <span class="kw">return</span> text
+
+<span class="cmt">#sv-sterge tot din locu asta si scrie &lt;modalitate&gt;
+</span><span class="kw">def</span> DeleteAndType(dttext):
+    <span class="skw">type</span>(Key.HOME)
+    <span class="skw">type</span>(Key.END, KeyModifier.SHIFT); <span class="skw">wait</span>(<span class="dig">0.2</span>)
+    <span class="skw">type</span>(Key.DELETE); <span class="skw">wait</span>(<span class="dig">0.2</span>)
+    <span class="skw">type</span>(dttext); <span class="skw">wait</span>(<span class="dig">1</span>)
+
+<span class="kw">def</span> CheckNumLock():
+    stateNumLock = Env.isLockOn(Key.NUM_LOCK)
+    <span class="kw">if</span> stateNumLock == True:
+        <span class="skw">type</span>(Key.NUM_LOCK)
+
+<span class="kw">def</span> CheckCapsLock():
+    stateCapsLock = Env.isLockOn(Key.CAPS_LOCK)
+    <span class="kw">if</span> stateCapsLock == True:
+        <span class="skw">type</span>(Key.CAPS_LOCK)
+
+<span class="cmt">#sv-return nr lunii(sau 13)
+</span><span class="kw">def</span> getCfMonth(x):
+    <span class="kw">return</span> {
+        <span class="str">'A'</span>: <span class="str">'01'</span>,        <span class="str">'B'</span>: <span class="str">'02'</span>,        <span class="str">'C'</span>: <span class="str">'03'</span>,        <span class="str">'D'</span>: <span class="str">'04'</span>,        <span class="str">'E'</span>: <span class="str">'05'</span>,
+        <span class="str">'H'</span>: <span class="str">'06'</span>,        <span class="str">'L'</span>: <span class="str">'07'</span>,        <span class="str">'M'</span>: <span class="str">'08'</span>,        <span class="str">'P'</span>: <span class="str">'09'</span>,        <span class="str">'R'</span>: <span class="str">'10'</span>,
+        <span class="str">'S'</span>: <span class="str">'11'</span>,        <span class="str">'T'</span>: <span class="str">'12'</span>        }.get(x, <span class="str">'13'</span>)
+<span class="kw">def</span> getMonthName(mNr):
+    <span class="kw">return</span> {<span class="str">"01"</span>:<span class="str">"gennaio"</span>, <span class="str">"02"</span>:<span class="str">"febbraio"</span>, <span class="str">"03"</span>:<span class="str">"marzo"</span>, <span class="str">"04"</span>:<span class="str">"aprile"</span>, <span class="str">"05"</span>:<span class="str">"maggio"</span>,
+            <span class="str">"06"</span>:<span class="str">"giugno"</span>, <span class="str">"07"</span>:<span class="str">"luglio"</span>, <span class="str">"08"</span>:<span class="str">"agosto"</span>, <span class="str">"09"</span>:<span class="str">"settembre"</span>, <span class="str">"10"</span>:<span class="str">"ottobre"</span>,
+            <span class="str">"11"</span>:<span class="str">"novembre"</span>, <span class="str">"12"</span>:<span class="str">"dicembre"</span>}.get(mNr, None)
+
+<span class="kw">def</span> setProvinceDict():
+    provList={}
+    sigla=<span class="str">""</span>
+    reg=<span class="str">""</span>
+
+    <span class="skw">click</span>(Pattern(<img src="SigladellaPr.png" />).targetOffset(-<span class="dig">25</span>,<span class="dig">22</span>)); <span class="skw">wait</span>(<span class="dig">0.3</span>)
+    <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">120</span>):
+        sigla=GetText()
+        <span class="kw">while</span>(sigla==<span class="str">""</span>):
+            sigla=GetText(); <span class="skw">wait</span>(<span class="dig">0.1</span>)
+        tab(<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">0.2</span>)
+        reg=GetText()
+        <span class="kw">while</span>(reg==<span class="str">""</span>):
+            reg=GetText(); <span class="skw">wait</span>(<span class="dig">0.1</span>)
+        provList[str(sigla).strip()]=str(reg).strip()
+        tab(-<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">0.2</span>)
+        <span class="skw">click</span>(Pattern(<img src="OKAnnulla.png" />).targetOffset(<span class="dig">37</span>,-<span class="dig">21</span>)); <span class="skw">wait</span>(<span class="dig">0.3</span>)
+    pickle.dump(provList, open(myPath + <span class="str">"\\provDict.p"</span>, <span class="str">'wb'</span>))
+
+<span class="kw">def</span> getProvinceDict():
+    <span class="kw">return</span> pickle.load(open(myPath + <span class="str">"\\provDict.p"</span>, <span class="str">'rb'</span>))
+
+<span class="kw">def</span> getSocDict():
+    <span class="kw">return</span> pickle.load(open(myPath + <span class="str">"\\socDict.p"</span>, <span class="str">'rb'</span>))
+
+<span class="kw">def</span> createSocList():
+    fout=open(myPath + <span class="str">"\\socList.csv"</span>, <span class="str">'ab'</span>)
+    fout.close()
+    prevsoc=<span class="str">"asfdwsrgw"</span>
+
+    <span class="kw">while</span>(True):
+        <span class="skw">click</span>(Pattern(<img src="ECcdiccLotto.png" />).targetOffset(-<span class="dig">70</span>,<span class="dig">0</span>)); <span class="skw">wait</span>(<span class="dig">0.3</span>)
+        <span class="skw">type</span>(Key.DOWN + Key.ENTER); <span class="skw">wait</span>(<span class="dig">0.3</span>)
+        <span class="skw">click</span>(Pattern(<img src="EICcdiccLott.png" />).targetOffset(-<span class="dig">109</span>,<span class="dig">0</span>)); <span class="skw">wait</span>(<span class="dig">0.3</span>)
+        valsoc=GetText()
+        <span class="kw">if</span> valsoc==prevsoc:
+            <span class="kw">break</span>
+        <span class="kw">else</span>:
+            prevsoc=valsoc
+        fout=open(myPath + <span class="str">"\\socList.csv"</span>, <span class="str">'ab'</span>)
+        writer = csv.writer(fout, delimiter=<span class="str">'\t'</span>)
+        writer.writerow([valsoc])
+        fout.close()
+
+<span class="kw">def</span> ftpCopyPDF(filename, cc, dtc):
+    isfile=False
+    visuraPath=(<span class="str">r"/"</span>+cc+<span class="str">r"/"</span>+dtc[<span class="dig">6</span>:<span class="dig">10</span>]+<span class="str">r"/TIM/"</span>+getMonthName(dtc[<span class="dig">3</span>:<span class="dig">5</span>]).upper()
+            +<span class="str">r"/"</span>+dtc.replace(<span class="str">r"/"</span>, <span class="str">r"."</span>)+<span class="str">r"/VISURE/"</span>)
+    repozitoryPath=<span class="str">'C:\\DEALER-AR\\DDI\\RepositoryAttach\\'</span>
+    lfile=open(repozitoryPath+filename+<span class="str">r".pdf"</span>, <span class="str">'wb'</span>)
+    ftp = FTP(<span class="str">"192.168.20.1"</span>)
+    <span class="kw">try</span>:
+        ftp.login(<span class="str">"anca.palie"</span>, <span class="str">"4uk.palie"</span>)
+        ftp.cwd(visuraPath)
+        ftp.retrbinary(<span class="str">'RETR '</span>+filename+<span class="str">r".pdf"</span>, lfile.write)
+        isfile=True
+    <span class="kw">except</span>:
+        <span class="kw">print</span> <span class="str">"PDF was not found !"</span>
+    <span class="kw">finally</span>:
+        lfile.close()
+        <span class="kw">if</span> isfile==False:
+            os.remove(repozitoryPath+filename+<span class="str">r".pdf"</span>)
+        ftp.quit()
+        <span class="kw">return</span> isfile
+
+<span class="kw">def</span> verifyLineValues(lineValue, lineTabs, startImg, ppClickPoint=None):<span class="cmt">#, clearImg=None):    #DOAR DACA CLIPCLEAR FAIL</span>
+    <span class="kw">for</span> itry <span class="kw">in</span> range(<span class="dig">0</span>, <span class="dig">5</span>):
+        <span class="kw">if</span> ppClickPoint==None:
+            equals = verifyLines(lineValue, lineTabs, startImg)
+            <span class="kw">if</span> equals:
+                <span class="kw">break</span>
+            <span class="kw">else</span>:
+                <span class="kw">if</span> itry&gt;=<span class="dig">4</span>:
+                    <span class="kw">raise</span> Exception(<span class="str">"Corect data could not be found!"</span>)
+        <span class="kw">else</span>:
+            <span class="skw">click</span>(ppClickPoint); <span class="skw">wait</span>(<span class="dig">1</span>)
+            equals = verifyLines(lineValue, lineTabs, startImg)
+            <span class="kw">if</span> equals:
+                <span class="skw">type</span>(Key.ENTER); <span class="skw">wait</span>(<span class="dig">1</span>)
+                <span class="kw">break</span>
+            <span class="kw">else</span>:
+                tryClickReg(<span class="str">"rwindow"</span>, <span class="str">"ciudi"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+                <span class="cmt">#if clearImg!=None:    #DOAR DACA CLIPCLEAR FAIL
+</span>                <span class="cmt">#    trydClickReg("rrows", clearImg, 5); wait(0.5); GetTextSel(); wait(0.2)                
+</span>                <span class="kw">if</span> itry&gt;=<span class="dig">4</span>:
+                    <span class="kw">raise</span> Exception(<span class="str">"Corect data could not be found!"</span>)
+
+<span class="kw">def</span> verifyLines(lineValue, lineTabs, startImg):
+    tryClickReg(<span class="str">"rwindow"</span>, startImg, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    tryClickReg(<span class="str">"rwindow"</span>, startImg, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>); tab(<span class="dig">1</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    prev=<span class="str">"empty"</span>
+    <span class="kw">while</span>(True):
+        equals=True
+        breaktabs=<span class="dig">0</span>
+        tab(lineTabs[<span class="dig">0</span>], <span class="dig">0</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        selectedValue=GetText()
+        <span class="kw">if</span> prev == selectedValue:
+            <span class="kw">break</span>
+        <span class="kw">print</span> selectedValue+<span class="str">" 1-- "</span>+lineValue[<span class="dig">0</span>]
+        <span class="kw">if</span>  selectedValue != lineValue[<span class="dig">0</span>]:
+            equals = False
+            <span class="kw">for</span> ibreaktabs0 <span class="kw">in</span> range(<span class="dig">1</span>, len(lineTabs)-<span class="dig">1</span>):
+                breaktabs+=lineTabs[ibreaktabs0]
+            tab(breaktabs, <span class="dig">0</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="kw">else</span>:
+            <span class="kw">for</span> lineValCount <span class="kw">in</span> range(<span class="dig">1</span>, len(lineValue)):
+                tab(lineTabs[lineValCount], <span class="dig">0</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+                selectedValue=GetText()
+                <span class="kw">print</span> selectedValue+<span class="str">" -- "</span>+lineValue[lineValCount]
+                <span class="kw">if</span> selectedValue != lineValue[lineValCount]:
+                    equals = False
+                    <span class="kw">for</span> ibreaktabs <span class="kw">in</span> range(lineValCount+<span class="dig">1</span>, len(lineTabs)-<span class="dig">1</span>):
+                        breaktabs+=lineTabs[ibreaktabs]
+                    tab(breaktabs, <span class="dig">0</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+                    <span class="kw">break</span>
+        <span class="kw">if</span> equals == True:
+            <span class="kw">return</span> True
+        tab(lineTabs[len(lineTabs)-<span class="dig">1</span>],<span class="dig">0</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        prev=GetText()
+        tab(<span class="dig">1</span>); <span class="skw">wait</span>(<span class="dig">1.5</span>)
+    <span class="kw">return</span> False
+
+<span class="kw">def</span> getTipoVendita(text):
+    <span class="kw">if</span> <span class="str">"TIM SENZA PROBLEMI SUPER"</span> <span class="kw">in</span> text:
+        <span class="kw">return</span> <span class="str">"ttt"</span>
+    <span class="kw">elif</span> <span class="str">"TIM SENZA PROBLEMI PIU"</span> <span class="kw">in</span> text:
+        <span class="kw">return</span> <span class="str">"tt"</span>
+    <span class="kw">elif</span> (<span class="str">"TIM SENZA PROBLEMI RICARICABILE"</span> <span class="kw">in</span> text) <span class="kw">or</span> (<span class="str">"TIM SENZA PROBLEMI"</span> <span class="kw">in</span> text):
+        <span class="kw">return</span> <span class="str">"t"</span>
+    <span class="kw">elif</span> <span class="str">"TIM VALORE 400"</span> <span class="kw">in</span> text:
+        <span class="kw">return</span> <span class="str">"tttttttt"</span>
+    <span class="kw">elif</span> <span class="str">"TIM VALORE 250"</span> <span class="kw">in</span> text:
+        <span class="kw">return</span> <span class="str">"ttttttt"</span>
+    <span class="kw">elif</span> <span class="str">"TIM VALORE 150"</span> <span class="kw">in</span> text:
+        <span class="kw">return</span> <span class="str">"tttttt"</span>
+    <span class="kw">elif</span> <span class="str">"TIM VALORE NEW"</span> <span class="kw">in</span> text:
+        <span class="kw">return</span> <span class="str">"tttt"</span>
+    <span class="kw">elif</span> <span class="str">"TIM VALORE"</span> <span class="kw">in</span> text:
+        <span class="kw">if</span> <span class="str">"AZIENDA"</span> <span class="kw">in</span> text:
+            <span class="kw">return</span> <span class="str">"tttttttttttttttt"</span>
+        <span class="kw">else</span>:
+            <span class="kw">return</span> <span class="str">"ttttttttt"</span>
+    <span class="kw">elif</span> <span class="str">"TIM TUTTO SMALL"</span> <span class="kw">in</span> text:
+        <span class="kw">return</span> <span class="str">"tttttttttt"</span>
+    <span class="kw">elif</span> <span class="str">"TIM TUTTO MEDIUM"</span> <span class="kw">in</span> text:
+        <span class="kw">return</span> <span class="str">"ttttttttttt"</span>
+    <span class="kw">elif</span> <span class="str">"TIM TUTTO LARGE"</span> <span class="kw">in</span> text:
+        <span class="kw">return</span> <span class="str">"tttttttttttt"</span>
+    <span class="kw">elif</span> <span class="str">"TIM TUTTO SENZA LIMITI"</span> <span class="kw">in</span> text:
+        <span class="kw">if</span> <span class="str">"INSIEME"</span> <span class="kw">in</span> text:
+            <span class="kw">return</span> <span class="str">"tttttttttttttt"</span>
+        <span class="kw">else</span>:
+            <span class="kw">return</span> <span class="str">"ttttttttttttt"</span>
+    <span class="kw">else</span>:
+        <span class="kw">raise</span> Exception(<span class="str">"Tipo vendita not recognized!"</span>)
+
+<span class="cmt">#sv-returneaza o lista de rows(de la fromRow la toRow) cu valori(stringuri) din un Xls(filename)
+</span><span class="kw">def</span> getXLSRows(filename, fromRow=<span class="dig">0</span>, toRow=-<span class="dig">1</span>):
+    wb=open_workbook(filename)
+    s=wb.sheet_by_index(<span class="dig">0</span>)
+    <span class="kw">if</span> toRow==-<span class="dig">1</span> <span class="kw">and</span> fromRow&lt;=s.nrows <span class="kw">and</span> fromRow&gt;=<span class="dig">0</span>:
+        toRow=s.nrows-<span class="dig">1</span>
+    <span class="kw">elif</span> fromRow&lt;<span class="dig">0</span> <span class="kw">or</span> fromRow&gt;toRow <span class="kw">or</span> toRow&gt;s.nrows:
+        <span class="kw">raise</span> <span class="str">"Invalid Row indexes!"</span>
+    rows=[]
+    <span class="kw">for</span> rnr <span class="kw">in</span> range(fromRow, toRow+<span class="dig">1</span>):
+        row=[]
+        <span class="kw">for</span> cnr <span class="kw">in</span> range(s.ncols):
+            cl=s.cell(rnr ,cnr)
+            <span class="kw">if</span> cl.ctype==XL_CELL_NUMBER:
+                row.append(str(int(cl.value)))
+            <span class="kw">elif</span> cl.ctype==XL_CELL_DATE:
+                dt = list(xldate_as_tuple(cl.value, wb.datemode))
+                <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">6</span>):
+                    dt[i]=str(dt[i])
+                    <span class="kw">if</span> len(dt[i])==<span class="dig">1</span>:
+                        dt[i]=<span class="str">'0'</span>+dt[i]
+                dtstr=<span class="str">'%s/%s/%s %s:%s:%s'</span>%(dt[<span class="dig">2</span>],dt[<span class="dig">1</span>],dt[<span class="dig">0</span>][<span class="dig">2</span>:<span class="dig">4</span>],dt[<span class="dig">3</span>],dt[<span class="dig">4</span>],dt[<span class="dig">5</span>])
+                row.append(dtstr)
+            <span class="kw">else</span>:
+                row.append(str(cl.value))
+        rows.append(row)
+    <span class="kw">return</span> rows
+
+<span class="cmt">#sv-completeaza fis de intrare cu noi date
+</span><span class="kw">def</span> completeXLS(filename, row, value):
+    rb = open_workbook(filename, formatting_info=True)
+    wb = copy(rb)
+    ws = wb.get_sheet(<span class="dig">0</span>)
+
+    ws.write(row, <span class="dig">20</span>, <span class="str">"OK"</span>)
+    ws.write(row, <span class="dig">21</span>, value)
+    ws.write(row, <span class="dig">22</span>, <span class="str">"APPROVATO"</span>)
+    ws.write(row, <span class="dig">23</span>, strftime(<span class="str">'%d/%m/%Y'</span>))
+
+    wb.save(filename)
+
+<span class="kw">def</span> pastesv(str):
+    paste(str); <span class="skw">wait</span>(<span class="dig">0.1</span>)
+    toolkit = Toolkit.getDefaultToolkit()
+    toolkit.getSystemClipboard().setContents(StringSelection(<span class="str">""</span>), None)
+</pre>
+</body>
+</html>

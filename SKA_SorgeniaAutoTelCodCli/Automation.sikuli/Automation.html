@@ -1,0 +1,280 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }  
+         
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>Automation.sikuli\Automation.sikuli</h2> <a href="Automation.sikuli\Automation.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">from</span> sikuli <span class="kw">import</span> *
+<span class="kw">import</span> os
+<span class="kw">import</span> csv
+<span class="kw">import</span> shutil
+<span class="kw">from</span> time <span class="kw">import</span> strftime
+<span class="kw">from</span> datetime <span class="kw">import</span> datetime
+
+<span class="kw">import</span> AutoImages
+reload(AutoImages)
+<span class="kw">from</span> AutoImages <span class="kw">import</span> *
+pagepoint=Location(<span class="dig">7</span>, Screen(<span class="dig">0</span>).getH()/<span class="dig">2</span>)
+pagejos=Location(<span class="dig">17</span>, (Screen(<span class="dig">0</span>).getH()/<span class="dig">4</span>)*<span class="dig">3</span>)
+
+logDir = <span class="str">"D:\\Automatizare Sorgenia\\SorgeniaAutoTelCodCli\\Log\\"</span> + strftime(<span class="str">"Logger_%d_%m_%Y"</span>) + <span class="str">"\\"</span>
+logFis = logDir + <span class="str">"log.txt"</span>
+outDir = <span class="str">"D:\\Automatizare Sorgenia\\Fisiere de iesire\\"</span>
+outFis = outDir + <span class="str">"codcli2_output.csv"</span>
+
+<span class="kw">def</span> MakeFiles():
+    <span class="kw">if</span> <span class="kw">not</span> os.path.exists(logDir):
+        os.makedirs(logDir)
+    <span class="kw">if</span> <span class="kw">not</span> os.path.exists(logFis):
+        fl = open(logFis, <span class="str">"wb"</span>)
+        fl.close()
+    <span class="kw">if</span> <span class="kw">not</span> os.path.exists(outDir):
+        os.makedirs(outDir)
+    <span class="kw">if</span> <span class="kw">not</span> os.path.exists(outFis):
+        fl = open(outFis, <span class="str">"wb"</span>)
+        fl.close()
+        writeToOutput([<span class="str">"Cod Cli"</span>, <span class="str">"Data Affido"</span>, <span class="str">"Cod Fis"</span>, <span class="str">"PIVA"</span>, <span class="str">"Tel Fisso"</span>, <span class="str">"Tel Celulare"</span>, <span class="str">"Tel Associati"</span>, <span class="str">"Tel Contatti"</span>])
+
+<span class="kw">def</span> CaptureScreen():
+    img = Screen(<span class="dig">0</span>).<span class="skw">capture</span>(Screen(<span class="dig">0</span>).getBounds())
+    shutil.copy2(img, logDir+strftime(<img src="[%d_%m_%Y]Capture Exception Time[%H_%M_%S].png" />))
+
+<span class="kw">def</span> writeToLog(mesaj):
+    myfile = file(logFis, <span class="str">"a"</span>)
+    myfile.write(strftime(<span class="str">"[%H:%M:%S]"</span>) + <span class="str">" - "</span> + mesaj + <span class="str">"\n"</span>)
+    myfile.close()
+
+<span class="kw">def</span> writeToOutput(row):
+    <span class="kw">with</span> open(outFis, <span class="str">'ab'</span>) <span class="kw">as</span> fout:
+        writer = csv.writer(fout, delimiter=<span class="str">'\t'</span>)
+        writer.writerow(row)
+
+<span class="kw">def</span> CheckNumLock():
+    stateNumLock = Env.isLockOn(Key.NUM_LOCK)
+    <span class="kw">if</span> stateNumLock == True:
+        <span class="skw">type</span>(Key.NUM_LOCK)
+
+<span class="kw">def</span> GetText():
+    <span class="skw">type</span>(Key.HOME); <span class="skw">wait</span>(<span class="dig">0.1</span>); <span class="skw">type</span>(Key.END, KeyModifier.SHIFT); <span class="skw">wait</span>(<span class="dig">0.1</span>)
+    <span class="kw">return</span> GetTextSel()
+
+<span class="kw">def</span> GetTextSel():
+    <span class="skw">type</span>(<span class="str">'c'</span>, KeyModifier.CTRL); <span class="skw">wait</span>(<span class="dig">0.1</span>)
+    text=Env.getClipboard()
+    <span class="skw">type</span>(Key.LEFT); paste(<span class="str">""</span>)
+    <span class="kw">return</span> text
+
+<span class="kw">def</span> pastesv(str):
+    paste(str); <span class="skw">wait</span>(<span class="dig">0.1</span>)
+    paste(<span class="str">""</span>)
+
+<span class="kw">def</span> loadCRM():
+    writeToLog(<span class="str">"CRM loading..."</span>)
+
+    <span class="kw">if</span> <span class="kw">not</span> App.focus(<span class="str">"Sorgenia Call Center"</span>):
+        App.open(<span class="str">"C:\\Program Files\\Internet Explorer\\iexplore.exe http://10.1.168.1/sorgenia_ita/start.swe"</span>); <span class="skw">wait</span>(<span class="dig">8</span>)
+    <span class="kw">if</span> verifyExist(<span class="str">"etc"</span>, <span class="str">"enterSorgenia"</span>, <span class="dig">5</span>):
+        <span class="skw">type</span>(<span class="str">"ruggericinzia"</span>+Key.TAB+<span class="str">"firespa2"</span> + Key.ENTER); <span class="skw">wait</span>(<span class="dig">10</span>)
+    <span class="kw">if</span> verifyExist(<span class="str">"etc"</span>, <span class="str">"ieSorgenia"</span>, <span class="dig">10</span>):
+        <span class="skw">type</span>(Key.F11); <span class="skw">wait</span>(<span class="dig">5</span>)
+    <span class="kw">if</span> verifyExist(<span class="str">"etc"</span>, <span class="str">"clienti"</span>, <span class="dig">5</span>):
+        clickImage(<span class="str">"etc"</span>, <span class="str">"clienti"</span>, <span class="dig">3</span>); <span class="skw">wait</span>(<span class="dig">8</span>)
+    <span class="kw">elif</span> verifyExist(<span class="str">"etc"</span>, <span class="str">"clientisel"</span>, <span class="dig">5</span>):
+        clickImage(<span class="str">"etc"</span>, <span class="str">"clientisel"</span>, <span class="dig">3</span>); <span class="skw">wait</span>(<span class="dig">8</span>)
+
+    writeToLog(<span class="str">"CRM loaded successfully."</span>)
+
+tErr=<span class="dig">0</span>
+<span class="kw">def</span> Automation(startRow=<span class="dig">1</span>, finalRow=-<span class="dig">1</span>, errMax=<span class="dig">50</span>):
+    <span class="kw">global</span> tErr
+    writeToLog(<span class="str">"Automation started!"</span>)
+
+    <span class="kw">with</span> open(<span class="str">'D:\\Automatizare Sorgenia\\SorgeniaAutoTelCodCli\\input.csv'</span>, <span class="str">'rb'</span>) <span class="kw">as</span> fin:
+        reader = csv.reader(fin, delimiter=<span class="str">','</span>)
+
+        startCT=<span class="str">"StartingRow"</span>
+        <span class="kw">if</span> startRow==-<span class="dig">1</span>:
+            otest=open(outFis, <span class="str">'rb'</span>)
+            oreader = csv.reader(otest, delimiter=<span class="str">'\t'</span>)
+            <span class="kw">try</span>:
+                oreader.next()
+                startCT=oreader.next()[<span class="dig">0</span>]
+                <span class="kw">for</span> row <span class="kw">in</span> oreader:
+                    startCT=row[<span class="dig">0</span>]
+            <span class="kw">except</span>:
+                startRow=<span class="dig">1</span>
+            otest.close()
+
+        nrow=<span class="dig">0</span>
+        <span class="kw">if</span> startRow==-<span class="dig">1</span>:
+            outputpassed=False
+        <span class="kw">else</span>:
+            outputpassed=True
+        <span class="kw">for</span> row <span class="kw">in</span> reader:
+            nrow+=<span class="dig">1</span>
+            <span class="kw">if</span> startRow==-<span class="dig">1</span>:
+                <span class="kw">if</span> outputpassed==False:
+                    <span class="kw">if</span> row[<span class="dig">0</span>]==startCT:
+                        outputpassed=True
+                    <span class="kw">continue</span>
+            <span class="kw">elif</span> nrow&lt;startRow:
+                <span class="kw">continue</span>
+            <span class="kw">if</span> finalRow!=-<span class="dig">1</span> <span class="kw">and</span> nrow&gt;finalRow:
+                <span class="kw">break</span>
+            <span class="kw">if</span> tErr&gt;errMax:
+                writeToLog(<span class="str">"Too many errors, assuming aplication failure!"</span>)
+                <span class="kw">break</span>
+
+            <span class="kw">for</span> tries <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">5</span>):
+                <span class="kw">try</span>:
+                    procRow(row)
+                    <span class="kw">break</span>
+                <span class="kw">except</span> Exception, exp:
+                    tErr+=<span class="dig">1</span>
+                    <span class="kw">if</span>(tries&gt;<span class="dig">3</span>):
+                        CaptureScreen()
+                        writeToLog(<span class="str">"@CodCli = "</span> + row[<span class="dig">0</span>] + <span class="str">"--"</span> + exp.message + <span class="str">" -ABORT!"</span>)
+                        writeToOutput([row[<span class="dig">0</span>], row[<span class="dig">2</span>], row[<span class="dig">4</span>], row[<span class="dig">5</span>], <span class="str">"?"</span>, <span class="str">"?"</span>, <span class="str">"?"</span>, <span class="str">"Could not get data!"</span>])
+                    <span class="kw">else</span>:
+                        writeToLog(<span class="str">"@CodCli = "</span> + row[<span class="dig">0</span>] + <span class="str">"--"</span> + exp.message + <span class="str">" -retry("</span>+ str(tries+<span class="dig">1</span>) + <span class="str">")..."</span>)
+                <span class="kw">except</span>:
+                    tErr+=<span class="dig">1</span>
+                    <span class="kw">if</span>(tries&gt;<span class="dig">3</span>):
+                        CaptureScreen()
+                        writeToLog(<span class="str">"@CodCli = "</span> + row[<span class="dig">0</span>] + <span class="str">"--"</span> + <span class="str">"Unknown error"</span> + <span class="str">" -ABORT!"</span>)
+                        writeToOutput([row[<span class="dig">0</span>], row[<span class="dig">2</span>], row[<span class="dig">4</span>], row[<span class="dig">5</span>], <span class="str">"?"</span>, <span class="str">"?"</span>, <span class="str">"?"</span>, <span class="str">"Could not get data!"</span>])
+                    <span class="kw">else</span>:
+                        writeToLog(<span class="str">"@CodCli = "</span> + row[<span class="dig">0</span>] + <span class="str">"--"</span> + <span class="str">"Unknown error"</span> + <span class="str">" -retry("</span>+ str(tries+<span class="dig">1</span>) + <span class="str">")..."</span>)
+        <span class="kw">if</span> outputpassed==False:
+            <span class="kw">pass</span>
+
+    writeToLog(<span class="str">"Automation finished!"</span>)
+
+<span class="kw">def</span> procRow(iRow):
+    oData=[iRow[<span class="dig">0</span>], iRow[<span class="dig">2</span>], iRow[<span class="dig">4</span>], iRow[<span class="dig">5</span>]]
+
+    clickImage(<span class="str">"etc"</span>, <span class="str">"clientisel"</span>, <span class="dig">3</span>); <span class="skw">wait</span>(<span class="dig">4</span>)
+    <span class="cmt">#clickImage("etc", "tutticlienti", 5); wait(2)
+</span>    <span class="skw">type</span>(<span class="str">"q"</span>, KeyModifier.ALT); <span class="skw">wait</span>(<span class="dig">2</span>)
+    <span class="kw">if</span> len(iRow[<span class="dig">0</span>].split(<span class="str">"_"</span>))&lt;<span class="dig">2</span>:
+        <span class="kw">return</span>
+    <span class="skw">type</span>(iRow[<span class="dig">0</span>].split(<span class="str">"_"</span>)[<span class="dig">1</span>] + Key.ENTER); <span class="skw">wait</span>(<span class="dig">4</span>)
+    clickImage(<span class="str">"etc"</span>, <span class="str">"ragione"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">6</span>)
+
+    allphones=[]
+    dclickImage(<span class="str">"etc."</span>, <span class="str">"telfis"</span>, <span class="dig">10</span>); <span class="skw">wait</span>(<span class="dig">0.3</span>)
+    allphones.append(<span class="str">"'"</span>+GetTextSel().strip())
+    dclickImage(<span class="str">"etc."</span>, <span class="str">"telcel"</span>, <span class="dig">10</span>); <span class="skw">wait</span>(<span class="dig">0.3</span>)
+    allphones.append(<span class="str">"'"</span>+GetTextSel().strip())
+    dclickImage(<span class="str">"etc."</span>, <span class="str">"telass"</span>, <span class="dig">10</span>); <span class="skw">wait</span>(<span class="dig">0.3</span>)
+    allphones.append(<span class="str">"'"</span>+GetTextSel().strip())
+
+    <span class="skw">click</span>(pagepoint); <span class="skw">wait</span>(<span class="dig">0.3</span>); <span class="skw">type</span>(Key.PAGE_DOWN*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">4</span>)
+    <span class="kw">if</span> verifyExist(<span class="str">"etc"</span>, <span class="str">"contattisel"</span>, <span class="dig">5</span>):
+        clickImage(<span class="str">"etc"</span>, <span class="str">"contatti"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">4</span>)
+    clickImage(<span class="str">"etc"</span>, <span class="str">"menu2"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>); tab(<span class="dig">1</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    <span class="kw">if</span> GetText()==<span class="str">""</span>:
+        <span class="kw">return</span>
+    <span class="kw">while</span>(True):
+        tab(<span class="dig">4</span>); <span class="skw">wait</span>(<span class="dig">0.2</span>)
+        aux=<span class="str">"'"</span>+GetTextSel().strip()
+        <span class="kw">if</span> (<span class="kw">not</span> aux <span class="kw">in</span> allphones) <span class="kw">and</span> (aux!=<span class="str">"'"</span>):
+            allphones.append(aux)
+        tab(<span class="dig">10</span>); <span class="skw">wait</span>(<span class="dig">0.2</span>)
+        aux=GetTextSel()
+        tab(<span class="dig">1</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="kw">if</span> GetText()==aux:
+            <span class="kw">break</span>
+
+    oData+=allphones
+    oData.append(<span class="str">"OK"</span>)
+    writeToOutput(oData)
+
+<span class="kw">def</span> tab(tabNr):
+    <span class="kw">if</span> tabNr&lt;<span class="dig">0</span>:
+        tabNr=abs(tabNr)
+        <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>, tabNr):
+            <span class="skw">type</span>(Key.TAB, KeyModifier.SHIFT); <span class="skw">wait</span>(<span class="dig">0.1</span>)
+    <span class="kw">else</span>:
+        <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>, tabNr):
+            <span class="skw">type</span>(Key.TAB); <span class="skw">wait</span>(<span class="dig">0.1</span>)
+
+CheckNumLock()
+MakeFiles()
+writeToLog(<span class="str">"------------------------------"</span>)
+AutoImages.loadImages()
+loadCRM()
+Automation(-<span class="dig">1</span>, <span class="dig">300</span>, <span class="dig">50</span>)
+writeToLog(<span class="str">"------------------------------"</span>)
+
+<span class="skw">type</span>(Key.F11); <span class="skw">wait</span>(<span class="dig">1</span>)
+<span class="kw">print</span> <span class="str">"=====================!!!SUCCESS!!!====================="</span>
+</pre>
+</body>
+</html>

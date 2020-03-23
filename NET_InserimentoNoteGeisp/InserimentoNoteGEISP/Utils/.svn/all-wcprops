@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/usvn/svn/NET_InserimentoNoteGeisp/!svn/ver/2/trunk/InserimentoNoteGEISP/Utils
+END
+SQLUtil.cs
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/usvn/svn/NET_InserimentoNoteGeisp/!svn/ver/2/trunk/InserimentoNoteGEISP/Utils/SQLUtil.cs
+END
+ExcelUtils.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/usvn/svn/NET_InserimentoNoteGeisp/!svn/ver/2/trunk/InserimentoNoteGEISP/Utils/ExcelUtils.cs
+END
+MailUtils.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/usvn/svn/NET_InserimentoNoteGeisp/!svn/ver/2/trunk/InserimentoNoteGEISP/Utils/MailUtils.cs
+END
+OleDbUtil.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/usvn/svn/NET_InserimentoNoteGeisp/!svn/ver/2/trunk/InserimentoNoteGEISP/Utils/OleDbUtil.cs
+END
+ConfigUtils.cs
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/usvn/svn/NET_InserimentoNoteGeisp/!svn/ver/2/trunk/InserimentoNoteGEISP/Utils/ConfigUtils.cs
+END

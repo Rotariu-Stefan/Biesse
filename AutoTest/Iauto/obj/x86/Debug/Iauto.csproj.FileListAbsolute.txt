@@ -1,0 +1,10 @@
+c:\users\stravos\documents\visual studio 2010\Projects\Iauto\Iauto\bin\Debug\Iauto.exe
+c:\users\stravos\documents\visual studio 2010\Projects\Iauto\Iauto\bin\Debug\Iauto.pdb
+c:\users\stravos\documents\visual studio 2010\Projects\Iauto\Iauto\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\stravos\documents\visual studio 2010\Projects\Iauto\Iauto\obj\x86\Debug\Iauto.Properties.Resources.resources
+c:\users\stravos\documents\visual studio 2010\Projects\Iauto\Iauto\obj\x86\Debug\GenerateResource.read.1.tlog
+c:\users\stravos\documents\visual studio 2010\Projects\Iauto\Iauto\obj\x86\Debug\GenerateResource.write.1.tlog
+c:\users\stravos\documents\visual studio 2010\Projects\Iauto\Iauto\obj\x86\Debug\Iauto.exe
+c:\users\stravos\documents\visual studio 2010\Projects\Iauto\Iauto\obj\x86\Debug\Iauto.pdb
+C:\Users\StravoS\documents\visual studio 2010\Projects\Iauto\Iauto\obj\x86\Debug\Iauto.notifyForm.resources
+C:\Users\StravoS\Documents\Visual Studio 2010\Projects\Iauto\Iauto\obj\x86\Debug\Iauto.cfgForm.resources

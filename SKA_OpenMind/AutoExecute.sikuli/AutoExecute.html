@@ -1,0 +1,149 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>AutoExecute.sikuli\AutoExecute.sikuli</h2> <a href="AutoExecute.sikuli\AutoExecute.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">from</span> sikuli <span class="kw">import</span> *
+<span class="kw">import</span> Automation
+reload(Automation)
+<span class="kw">from</span> Automation <span class="kw">import</span> *
+myPath = os.path.abspath(os.path.join(getBundlePath(), os.pardir))
+
+<span class="kw">def</span> Automation(startRow=<span class="dig">1</span>, finalRow=-<span class="dig">1</span>, errMax=<span class="dig">50</span>):
+    <span class="kw">global</span> tErr
+
+    writeToLog(<span class="str">"Automation started!"</span>)
+    reader = getXLSRows(inFis, <span class="dig">0</span>, -<span class="dig">1</span>)
+
+    startCT=<span class="str">"StartingRow"</span>
+    <span class="kw">if</span> startRow==-<span class="dig">1</span>:
+        otest=open(outFis, <span class="str">'rb'</span>)
+        oreader = csv.reader(otest, delimiter=<span class="str">'\t'</span>)
+        <span class="kw">try</span>:
+            oreader.next()
+            startCT=oreader.next()[<span class="dig">0</span>]
+            <span class="kw">for</span> row <span class="kw">in</span> oreader:
+                startCT=row[<span class="dig">0</span>]
+        <span class="kw">except</span>:
+            startRow=<span class="dig">1</span>
+        otest.close()
+    <span class="kw">if</span> startRow==-<span class="dig">1</span>:
+        outputpassed=False
+    <span class="kw">else</span>:
+        outputpassed=True
+
+    nrow=<span class="dig">0</span>
+    <span class="kw">for</span> row <span class="kw">in</span> reader:
+        nrow+=<span class="dig">1</span>
+        <span class="kw">if</span> startRow==-<span class="dig">1</span>:
+            <span class="kw">if</span> outputpassed==False:
+                <span class="kw">if</span> row[<span class="dig">0</span>]==startCT:
+                    outputpassed=True
+                <span class="kw">continue</span>
+        <span class="kw">elif</span> nrow&lt;startRow:
+            <span class="kw">continue</span>
+        <span class="kw">if</span> finalRow!=-<span class="dig">1</span> <span class="kw">and</span> nrow&gt;finalRow:
+            <span class="kw">break</span>
+        <span class="kw">if</span> errMax!=-<span class="dig">1</span> <span class="kw">and</span> tErr&gt;errMax:
+            writeToLog(<span class="str">"Too many errors, assuming aplication failure!"</span>)
+            <span class="kw">break</span>
+
+        <span class="kw">for</span> tries <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">5</span>):
+            <span class="kw">try</span>:
+                processInputRow(row)
+                certificatione()
+                indirizzo()
+                billing()
+                contratti()
+                ordini()
+                completeXLS(inFis, rowNr, condiceOrdine)
+                <span class="kw">break</span>
+            <span class="kw">except</span> Exception, exp:
+                tErr+=<span class="dig">1</span>
+                <span class="kw">if</span>(tries&gt;<span class="dig">3</span>):
+                    CaptureScreen()
+                    writeToLog(<span class="str">"@CodCli = "</span> + row[<span class="dig">0</span>] + <span class="str">"--"</span> + exp.message + <span class="str">" -ABORT!"</span>)
+                    writeToOutput([row[<span class="dig">0</span>], row[<span class="dig">2</span>], row[<span class="dig">4</span>], row[<span class="dig">5</span>], <span class="str">"?"</span>, <span class="str">"?"</span>, <span class="str">"?"</span>, <span class="str">"Could not get data!"</span>])
+                <span class="kw">else</span>:
+                    writeToLog(<span class="str">"@CodCli = "</span> + row[<span class="dig">0</span>] + <span class="str">"--"</span> + exp.message + <span class="str">" -retry("</span>+ str(tries+<span class="dig">1</span>) + <span class="str">")..."</span>)
+            <span class="kw">except</span>:
+                tErr+=<span class="dig">1</span>
+                <span class="kw">if</span>(tries&gt;<span class="dig">3</span>):
+                    CaptureScreen()
+                    writeToLog(<span class="str">"@CodCli = "</span> + row[<span class="dig">0</span>] + <span class="str">"--"</span> + <span class="str">"Unknown error"</span> + <span class="str">" -ABORT!"</span>)
+                    writeToOutput([row[<span class="dig">0</span>], row[<span class="dig">2</span>], row[<span class="dig">4</span>], row[<span class="dig">5</span>], <span class="str">"?"</span>, <span class="str">"?"</span>, <span class="str">"?"</span>, <span class="str">"Could not get data!"</span>])
+                <span class="kw">else</span>:
+                    writeToLog(<span class="str">"@CodCli = "</span> + row[<span class="dig">0</span>] + <span class="str">"--"</span> + <span class="str">"Unknown error"</span> + <span class="str">" -retry("</span>+ str(tries+<span class="dig">1</span>) + <span class="str">")..."</span>)
+    <span class="kw">if</span> outputpassed==False:
+        <span class="kw">pass</span>
+    writeToLog(<span class="str">"Automation finished!"</span>)
+</pre>
+</body>
+</html>

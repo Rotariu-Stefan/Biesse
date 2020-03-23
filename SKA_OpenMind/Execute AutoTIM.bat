@@ -1,0 +1,1 @@
+"C:\Program Files\Sikuli\sikuli-script.cmd" -r "D:\Andrei\OPEN MIND\AutomatizareOM\Automation.sikuli"

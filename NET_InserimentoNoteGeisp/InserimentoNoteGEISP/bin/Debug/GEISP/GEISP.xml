@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+  <asoc name="Name2312">
+    <name>Name2312</name>
+    <mdb>C:\Sikuli1.0.1\sikuli-setup.jar</mdb>
+    <excel>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\defaultfile</excel>
+    <mdb2>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\defaultfile</mdb2>
+  </asoc>
+  <asoc name="Default1">
+    <name>Default1</name>
+    <mdb>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\defaultfile</mdb>
+    <excel>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\defaultfile</excel>
+    <mdb2>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\defaultfile</mdb2>
+  </asoc>
+  <asoc name="Etc222">
+    <name>Etc222</name>
+    <mdb>C:\Sikuli1.0.1\runIDE.cmd</mdb>
+    <excel>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\defaultfile</excel>
+    <mdb2>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\defaultfile</mdb2>
+  </asoc>
+  <asoc name="dededeE">
+    <name>dededeE</name>
+    <mdb>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\AggiornaProrogheGeisp.csproj.user</mdb>
+    <excel>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\Automation.cs</excel>
+    <mdb2>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\Automation.cs</mdb2>
+  </asoc>
+</data>

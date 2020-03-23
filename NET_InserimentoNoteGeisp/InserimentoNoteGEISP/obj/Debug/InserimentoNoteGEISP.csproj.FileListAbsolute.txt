@@ -1,0 +1,23 @@
+D:\OCTAV\pentru svn\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\bin\Debug\InserimentoNoteGEISP.exe.config
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\bin\Debug\InserimentoNoteGEISP.exe.config
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\bin\Debug\GEISP\GEISP.xml
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\bin\Debug\Images\semaphore_green.png
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\bin\Debug\Images\semaphore_red.png
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\bin\Debug\InserimentoNoteGEISP.exe
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\bin\Debug\InserimentoNoteGEISP.pdb
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\bin\Debug\Microsoft.Office.Interop.Excel.dll
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\bin\Debug\office.dll
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\bin\Debug\Microsoft.Vbe.Interop.dll
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\bin\Debug\Microsoft.Office.Interop.Excel.xml
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\bin\Debug\office.xml
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\obj\Debug\ResolveAssemblyReference.cache
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\obj\Debug\InserimentoNoteGEISP.AddGeispDb.resources
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\obj\Debug\InserimentoNoteGEISP.Configurazione.resources
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\obj\Debug\InserimentoNoteGEISP.DetailsForm.resources
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\obj\Debug\InserimentoNoteGEISP.ModifyGeispDb.resources
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\obj\Debug\InserimentoNoteGEISP.Properties.Resources.resources
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\obj\Debug\InserimentoNoteGEISP.ReportMonForm.resources
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\obj\Debug\ResGen.read.1.tlog
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\obj\Debug\ResGen.write.1.tlog
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\obj\Debug\InserimentoNoteGEISP.exe
+D:\NET_InserimentoNoteGeisp\InserimentoNoteGEISP\obj\Debug\InserimentoNoteGEISP.pdb

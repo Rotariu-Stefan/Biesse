@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+  <databases>
+  </databases>
+  <firms>
+    <firm name="IntellCredit" Id="SERVIZII" />
+    <firm name="Janus" Id="SERVIZIJ" />
+    <firm name="Telkom" Id="SERVIZIT" />
+  </firms>
+</data>

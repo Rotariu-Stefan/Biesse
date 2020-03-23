@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+  <asoc name="Name1">
+    <name>Name1</name>
+    <mdb>C:\Sikuli1.0.1\sikuli-setup.jar</mdb>
+    <excel>C:\Sikuli1.0.1\libs\liblept-2.dll</excel>
+    <mdb2>C:\Sikuli1.0.1\libs\libjpeg-9.dll</mdb2>
+  </asoc>
+  <asoc name="Default1">
+    <name>Default1</name>
+    <mdb>C:\Sikuli1.0.1\libs\libjpeg-9.dll</mdb>
+    <excel>C:\Sikuli1.0.1\libs\libopencv_core244.dll</excel>
+    <mdb2>C:\Sikuli1.0.1\libs\libopencv_highgui244.dll</mdb2>
+  </asoc>
+  <asoc name="Etc222">
+    <name>Etc222</name>
+    <mdb>D:\SV_1_NET_InserimentoNoteGeisp.rar</mdb>
+    <excel>D:\SV_2_NET_InserimentoNoteGeisp.rar</excel>
+    <mdb2>D:\SV_3_NET_InserimentoNoteGeisp.rar</mdb2>
+  </asoc>
+  <asoc name="sssssss">
+    <name>sssssss</name>
+    <mdb>D:\AOM\AutomatizareOMbk.rar</mdb>
+    <excel>D:\AOM\AutoTimOM.zip</excel>
+    <mdb2>D:\AOM\TIM ANDREI-.xls</mdb2>
+  </asoc>
+</data>

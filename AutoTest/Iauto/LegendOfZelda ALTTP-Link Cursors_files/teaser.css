@@ -1,0 +1,140 @@
+div.itemcontainer
+{
+	margin:auto;
+	text-align:center;
+	position:relative;
+}
+div.itemteaser
+{
+	width:130px;
+	height:100px;
+	display:inline-block;
+	padding:6px 26px 6px 6px;
+	margin:2px;
+	vertical-align:middle;
+	text-align:center;
+	background:url(teaser.png) left top no-repeat;
+	position:relative;
+	text-decoration:none;
+}
+div.itemteaser a.item img
+{
+	border:none;
+	padding:2px 6px;
+}
+div.itemteaser a.item span
+{
+	padding:0px 6px;
+	display:block;
+	text-overflow:ellipsis;
+	overflow:hidden;
+	max-height:2.7em;
+}
+div.itemteaser:hover
+{
+	background:url(teaser.png) right top no-repeat;
+	top:-3px;
+}
+div.itemteaser a.item:hover span
+{
+	text-decoration:underline;
+}
+div.itemteaser span.toprated
+{
+	width:12px;
+	height:12px;
+	background:url(star-12.png) no-repeat;
+	position:absolute;
+	left:14px;
+	top:8px;
+}
+div.itemteaser span.maturewarn
+{
+	width:12px;
+	height:12px;
+	background:url(mature-12.png) no-repeat;
+	position:absolute;
+	left:14px;
+	top:8px;
+}
+div.itemteaser div
+{
+	display:none;
+	color:#1e1e37;
+	position:absolute;
+	top:-90px;
+	left:-11px;
+	height:72px;
+	width:164px;
+	background:url(teaser-tip.png) no-repeat;
+	overflow:hidden;
+	z-index:2;
+	padding:8px 10px 18px 10px;
+	text-align:left;
+}
+div.itemteaser:hover div
+{
+	display:inline-block;
+}
+div.itemteaser span.author
+{
+	float:left;
+}
+div.itemteaser span.author a:first-of-type
+{
+	vertical-align:bottom;
+	display:inline-block;
+	max-width:80px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+div.itemteaser span.downloads
+{
+	float:right;
+	background:url(download-12.png) left no-repeat;
+	padding-left:16px;
+}
+div.itemteaser span.snippet
+{
+	clear:both;
+	display:block;
+	padding-top:4px;
+}
+div.itemteaser a.download
+{
+	position:absolute;
+	right:34px;
+	top:8px;
+	display:none;
+}
+div.itemteaser a.download img
+{
+	border:none 0;
+}
+div.itemteaser:hover a.download
+{
+	display:inline-block;
+}
+div.itemteaser img.delete
+{
+	position:absolute;
+	left:14px;
+	top:8px;
+	display:none;
+	float:left;
+	cursor:pointer;
+}
+div.itemteaser:hover img.delete
+{
+	display:inline-block;
+}
+div.itemteaser span.subdlcount
+{
+	position:absolute;
+	top:5px;
+	left:14px;
+	color:#999;
+	font-size:80%;
+}
+

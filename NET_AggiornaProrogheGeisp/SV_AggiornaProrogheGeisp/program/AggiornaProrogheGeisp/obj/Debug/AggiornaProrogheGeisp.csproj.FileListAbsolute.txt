@@ -1,0 +1,47 @@
+D:\OCTAV\pentru svn\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\bin\Debug\AggiornaProrogheGeisp.exe
+D:\OCTAV\pentru svn\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\bin\Debug\AggiornaProrogheGeisp.pdb
+D:\OCTAV\pentru svn\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\bin\Debug\Microsoft.Office.Interop.Excel.dll
+D:\OCTAV\pentru svn\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\obj\Debug\ResolveAssemblyReference.cache
+D:\OCTAV\pentru svn\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.csproj.ResolveComReference.cache
+D:\OCTAV\pentru svn\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.Main.resources
+D:\OCTAV\pentru svn\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.NewDB.resources
+D:\OCTAV\pentru svn\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.Properties.Resources.resources
+D:\OCTAV\pentru svn\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.csproj.GenerateResource.Cache
+D:\OCTAV\pentru svn\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.exe
+D:\OCTAV\pentru svn\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.pdb
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.csproj.ResolveComReference.cache
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.exe
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.pdb
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\bin\Debug\AggiornaProrogheGeisp.exe
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\bin\Debug\AggiornaProrogheGeisp.pdb
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\bin\Debug\Microsoft.Office.Interop.Excel.dll
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\bin\Debug\office.dll
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\bin\Debug\Microsoft.Vbe.Interop.dll
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\bin\Debug\Microsoft.Office.Interop.Excel.xml
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\bin\Debug\office.xml
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\obj\Debug\ResolveAssemblyReference.cache
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.Properties.Resources.resources
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\obj\Debug\ResGen.read.1.tlog
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\obj\Debug\ResGen.write.1.tlog
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.formAsoc.resources
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProroghe\AggiornaProrogheGeisp\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.formNotify.resources
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.csproj.ResolveComReference.cache
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.exe
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.pdb
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\bin\Debug\AggiornaProrogheGeisp.exe
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\bin\Debug\AggiornaProrogheGeisp.pdb
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\bin\Debug\Microsoft.Office.Interop.Excel.dll
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\bin\Debug\office.dll
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\bin\Debug\Microsoft.Vbe.Interop.dll
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\bin\Debug\Microsoft.Office.Interop.Excel.xml
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\bin\Debug\office.xml
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\obj\Debug\ResolveAssemblyReference.cache
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.formNotify.resources
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.Properties.Resources.resources
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\obj\Debug\ResGen.read.1.tlog
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\obj\Debug\ResGen.write.1.tlog
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.formMain.resources
+D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.formNew.resources
+D:\NET_AggiornaProrogheGeispO\program\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.csproj.ResolveComReference.cache
+D:\NET_AggiornaProrogheGeispO\program\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.exe
+D:\NET_AggiornaProrogheGeispO\program\AggiornaProrogheGeisp\obj\Debug\AggiornaProrogheGeisp.pdb

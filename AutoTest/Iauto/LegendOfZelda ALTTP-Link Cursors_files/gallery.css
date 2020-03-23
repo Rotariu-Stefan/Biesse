@@ -1,0 +1,224 @@
+div.gallerysearch
+{
+	text-align:center;
+	margin:30px 0;
+}
+div.gallerysearch input#search
+{
+	width:250px;
+}
+div.icondetail
+{
+	border:1px #888 solid;
+	margin:10px;
+	padding:5px 10px;
+	background:#f0f0f0;
+	font-size:small;
+	display:inline-block;
+}
+div.icondetail label
+{
+	font-size:medium;
+}
+a.smalldownload
+{
+	padding:3px 3px 3px 21px;
+	background:url(download.png) left no-repeat;
+}
+tr.setmember
+{
+	cursor:pointer;
+}
+div.alert
+{
+	color:Red;
+	border:1px solid Red;
+	background-color:Gold;
+	padding:8px;
+	text-align:center;
+	margin:8px;
+}
+li#setfeature a,li#setfeature span
+{
+	color:Purple;
+	padding-left:20px;
+	background:url(feature-12.png) 3px 50% no-repeat;
+}
+div.setbox
+{
+	border:solid 1px #7f9db9;
+	padding:8px;
+	margin-top:12px;
+	margin-bottom:12px;
+}
+img.setteaser
+{
+	float:left;
+	padding:8px;
+	border:0px;
+}
+div.setdownloads
+{
+	float:right;
+	color:gray;
+	padding:3px;
+	margin:0px 4px;
+}
+span.moreinfo
+{
+	font-size:small;
+	color:gray;
+}
+
+div.setscontainer
+{
+	margin:auto;
+	text-align:center;
+	position:relative;
+}
+a.setteaser
+{
+	width:130px;
+	height:100px;
+	display:inline-block;
+	padding:6px 26px 6px 6px;
+	margin:2px;
+	vertical-align:middle;
+	text-align:center;
+	overflow:hidden;
+	background:url(set-teaser2.png) top no-repeat;
+	position:relative;
+	text-decoration:none;
+}
+a.setteaser img
+{
+	border:none;
+	padding:2px 6px;
+}
+a.setteaser span.setname
+{
+	padding:0px 6px;
+	display:block;
+	text-overflow:ellipsis;
+	overflow:hidden;
+	max-height:2.7em;
+}
+a.setteaser:hover
+{
+	top:-3px;
+}
+a.setteaser:hover span.setname
+{
+	text-decoration:underline;
+}
+
+div.icufull
+{
+	background:url(detail-border.png) 50% 50% no-repeat;
+	display:inline-block;
+	vertical-align:middle;
+	margin:0 10px;
+}
+div.icufull-48
+{
+	background:url(detail-border-big.png) 50% 50% no-repeat;
+	display:inline-block;
+	vertical-align:middle;
+	margin:0 10px;
+}
+div.icufull img, div.icufull-48 img
+{
+	border:0;
+	margin:5px;
+	padding:3px;
+	background-color:#fff;
+	-webkit-transition: background-color .2s ease-in-out;
+	-moz-transition: background-color .2s ease-in-out;
+	-o-transition: background-color .2s ease-in-out;
+	transition: background-color .2s ease-in-out;
+}
+/*img.icufull
+{
+	border:0;
+	background:url(detail-border.png) 50% 50% no-repeat;
+}*/
+div.icufull img:hover, div.icufull-48 img:hover
+{
+	background-color:#000;
+}
+div.setfull
+{
+	display:inline-block;
+	vertical-align:middle;
+	margin:0 10px;
+}
+
+
+div.mainpane
+{
+	margin-right:200px;
+	display:inline-block;
+	vertical-align:top;
+	max-width:650px;
+}
+div.mainpane pre
+{
+	max-width:500px;
+}
+
+div.sidepane
+{
+	display:inline-block;
+	width:180px;
+	margin-left:-180px;
+	vertical-align:top;
+}
+div.clear
+{
+	clear:both;
+}
+
+div.ratingpanel
+{
+	display:inline-block;
+	margin-left:29px;
+	margin-top:-4px;
+}
+div.ratingpanel div
+{
+	display:inline-block;
+	line-height:24px;
+	position:relative;
+	top:1px;
+}
+div.ratingpanel img
+{
+	vertical-align:middle;
+	margin-right:0.5em;
+}
+
+/*
+div.setrating
+{
+	float:right;
+	width:32%;
+}
+div.setrating img#ratingimg
+{
+	display:inline-block;
+	float:left;
+}
+div.setrating div#ratingtip
+{
+	display:inline-block;
+	height:24px;
+	font-size:small;
+}
+div.setrating div#ratinginfo
+{
+	margin-top:5px;
+	clear:both;
+	font-size:small;
+	text-align:left;
+}
+*/

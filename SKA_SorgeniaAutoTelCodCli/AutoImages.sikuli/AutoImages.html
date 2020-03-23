@@ -1,0 +1,186 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }  
+         
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>AutoImages.sikuli\AutoImages.sikuli</h2> <a href="AutoImages.sikuli\AutoImages.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">from</span> sikuli <span class="kw">import</span> *
+<span class="kw">from</span> time <span class="kw">import</span> strftime
+<span class="kw">import</span> os
+
+<span class="kw">class</span> Regions():
+    rall=Region(<span class="dig">0</span>,<span class="dig">0</span>,getW(),getH())
+    rstarticon=Region(<span class="dig">0</span>,getH()-<span class="dig">100</span>,<span class="dig">100</span>,<span class="dig">100</span>)
+
+    <span class="cmt">#create app regions
+</span>    @staticmethod
+    <span class="kw">def</span> createRegs(appname):
+        rwin=getWindow(appname)
+        Regions.rwindow=rwin
+        Regions.rrow1=Region(rwin.x, rwin.y+<span class="dig">220</span>, <span class="dig">325</span>, rwin.h-<span class="dig">280</span>)
+        Regions.pagepoint=Location(rwin.x+<span class="dig">10</span>, rwin.y+rwin.h/<span class="dig">2</span>)
+
+    <span class="cmt">#afiseaza regiunile
+</span>    @staticmethod
+    <span class="kw">def</span> showRegs():
+        <span class="kw">for</span> i <span class="kw">in</span> Regions.__dict__.items():
+            <span class="kw">if</span>(i[<span class="dig">0</span>].startswith(<span class="str">"r"</span>)):
+                i[<span class="dig">1</span>].highlight(<span class="dig">2</span>)
+                <span class="kw">print</span> i[<span class="dig">0</span>], <span class="str">"----&gt;"</span>, i[<span class="dig">1</span>]
+
+<span class="kw">class</span> AutoImages():
+
+    imgDict = {}
+
+    @staticmethod
+    <span class="kw">def</span> loadImages():
+        AutoImages.addImage(<span class="str">"enterSorgenia"</span>, Pattern(<img src="ScrgeniaCall.png" />).similar(<span class="dig">0.35</span>))
+        AutoImages.addImage(<span class="str">"ieSorgenia"</span>, <img src="ViS0rgenlaCa.png" />)
+        AutoImages.addImage(<span class="str">"home"</span>, <img src="HOMEI1IRABen.png" />)
+        AutoImages.addImage(<span class="str">"clienti"</span>, Pattern(<img src="clientiimg.png" />).similar(<span class="dig">0.81</span>).targetOffset(<span class="dig">20</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"tutticlienti"</span>, Pattern(<img src="Tuttiiclient.png" />).targetOffset(<span class="dig">0</span>,<span class="dig">200</span>))
+        AutoImages.addImage(<span class="str">"clientisel"</span>, Pattern(<img src="clientisel.png" />).similar(<span class="dig">0.81</span>).targetOffset(<span class="dig">25</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"telfis"</span>, Pattern(<img src="TelefonoFiss.png" />).targetOffset(<span class="dig">86</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"telcel"</span>, Pattern(<img src="QTelefunoCel.png" />).targetOffset(<span class="dig">98</span>,<span class="dig">2</span>))
+        AutoImages.addImage(<span class="str">"telass"</span>, Pattern(<img src="Numtelefonic.png" />).targetOffset(<span class="dig">114</span>,<span class="dig">0</span>))
+        AutoImages.addImage(<span class="str">"ragione"</span>, Pattern(<img src="ragiosoc.png" />).targetOffset(<span class="dig">0</span>,<span class="dig">23</span>))
+        AutoImages.addImage(<span class="str">"codcli"</span>, Pattern(<img src="codcli.png" />).targetOffset(<span class="dig">69</span>,<span class="dig">3</span>))
+        AutoImages.addImage(<span class="str">"datacre"</span>, <img src="datajos.png" />)
+        AutoImages.addImage(<span class="str">"menu"</span>, Pattern(<img src="menupoint.png" />).targetOffset(<span class="dig">0</span>,<span class="dig">30</span>))
+        AutoImages.addImage(<span class="str">"contatti"</span>, <img src="contatti.png" />)
+        AutoImages.addImage(<span class="str">"contattisel"</span>, <img src="contattisel.png" />)
+        AutoImages.addImage(<span class="str">"condice"</span>, Pattern(<img src="condice.png" />).targetOffset(-<span class="dig">23</span>,<span class="dig">23</span>))
+        AutoImages.addImage(<span class="str">"menu2"</span>, Pattern(<img src="menu2.png" />).targetOffset(-<span class="dig">29</span>,<span class="dig">46</span>))
+
+    @staticmethod
+    <span class="kw">def</span> addImage(name, img):
+        AutoImages.imgDict[name] = img
+
+    @staticmethod
+    <span class="kw">def</span> getImage(name):
+        <span class="kw">return</span> AutoImages.imgDict[name]
+
+<span class="kw">def</span> findImage(regiune, imagine, timp):
+    imreg=<span class="skw">wait</span>(AutoImages.imgDict[imagine], timp)
+    <span class="kw">if</span>(imreg==None):
+        <span class="kw">raise</span> Exception(<span class="str">"Exceptie la cautare pe imaginea -&gt; "</span> + imagine)
+    <span class="kw">else</span>:
+        <span class="kw">return</span> imreg
+
+<span class="cmt">#sv-verifica existenta imagine
+</span><span class="kw">def</span> verifyExist(regiune, imagine, timp):
+    <span class="kw">if</span> exists(AutoImages.imgDict[imagine], timp):
+        <span class="kw">return</span> True
+    <span class="kw">else</span>:
+        <span class="kw">return</span> False
+
+<span class="cmt">#sv-verifica existenta imagine in regiune
+</span><span class="kw">def</span> verifyExistReg(regiune, imagine, timp):
+    <span class="kw">if</span> getattr(Regions, regiune).exists(AutoImages.imgDict[imagine], timp):
+        <span class="kw">return</span> True
+    <span class="kw">else</span>:
+        <span class="kw">return</span> False
+
+<span class="cmt">#sv-ashtepta aparitia
+</span><span class="kw">def</span> waitImage(regiune, imagine, timp):
+    <span class="kw">if</span> exists(AutoImages.imgDict[imagine], timp):
+        <span class="kw">return</span> <span class="str">"OK"</span>
+    <span class="kw">else</span>:
+        <span class="kw">raise</span> Exception(<span class="str">"Cannot find image '"</span> + imagine +<span class="str">"'!"</span>)
+
+<span class="cmt">#sv-da click sau ERR    
+</span><span class="kw">def</span> clickImage(regiune, imagine, timp):
+    <span class="kw">try</span>:
+        <span class="skw">click</span>(<span class="skw">wait</span>(AutoImages.imgDict[imagine], timp))
+    <span class="kw">except</span>:
+        <span class="kw">raise</span> Exception(<span class="str">"Cannot click image '"</span> + imagine +<span class="str">"'!"</span>)
+
+<span class="cmt">#sv-da click in regiune sau ERR
+</span><span class="kw">def</span> clickImageReg(regiune, imagine, timp):
+    <span class="kw">try</span>:
+        <span class="skw">click</span>(getattr(Regions, regiune).<span class="skw">wait</span>(AutoImages.imgDict[imagine], timp))
+    <span class="kw">except</span>:
+        <span class="kw">raise</span> Exception(<span class="str">"Region '"</span> + regiune + <span class="str">"' Cannot click image '"</span> + imagine +<span class="str">"'!"</span>)
+
+<span class="cmt">#sv-da dublu click sau ERR    
+</span><span class="kw">def</span> dclickImage(regiune, imagine, timp):
+    <span class="kw">try</span>:
+        <span class="skw">doubleClick</span>(<span class="skw">wait</span>(AutoImages.imgDict[imagine], timp))
+    <span class="kw">except</span>:
+        <span class="kw">raise</span> Exception(<span class="str">"Cannot double click image '"</span> + imagine +<span class="str">"'!"</span>)
+
+<span class="cmt">#sv-da dublu click in regiune sau ERR
+</span><span class="kw">def</span> dclickImageReg(regiune, imagine, timp):
+    <span class="kw">try</span>:
+        <span class="skw">doubleClick</span>(getattr(Regions, regiune).<span class="skw">wait</span>(AutoImages.imgDict[imagine], timp))
+    <span class="kw">except</span>:
+        <span class="kw">raise</span> Exception(<span class="str">"Region '"</span> + regiune + <span class="str">"' Cannot double click image '"</span> + imagine +<span class="str">"'!"</span>)
+</pre>
+</body>
+</html>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <asoc name="Name231">
+    <name>Name231</name>
+    <mdb>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\defaultfile</mdb>
+    <excel>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\defaultfile</excel>
+    <mdb2>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\defaultfile</mdb2>
+  </asoc>
+  <asoc name="Default1">
+    <name>Default1</name>
+    <mdb>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\defaultfile</mdb>
+    <excel>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\defaultfile</excel>
+    <mdb2>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\defaultfile</mdb2>
+  </asoc>
+  <asoc name="Etc22">
+    <name>Etc22</name>
+    <mdb>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\formMain.cs</mdb>
+    <excel>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\defaultfile</excel>
+    <mdb2>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\defaultfile</mdb2>
+  </asoc>
+  <asoc name="dededeE">
+    <name>dededeE</name>
+    <mdb>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\AggiornaProrogheGeisp.csproj.user</mdb>
+    <excel>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\Automation.cs</excel>
+    <mdb2>D:\NET_AggiornaProrogheGeisp\program\AggiornaProrogheGeisp\Automation.cs</mdb2>
+  </asoc>
+</Root>

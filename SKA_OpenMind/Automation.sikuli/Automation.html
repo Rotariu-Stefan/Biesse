@@ -1,0 +1,716 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>Automation.sikuli\Automation.sikuli</h2> <a href="Automation.sikuli\Automation.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">from</span> sikuli <span class="kw">import</span> *
+<span class="kw">import</span> os
+<span class="kw">import</span> csv
+<span class="kw">import</span> re
+<span class="kw">import</span> string
+<span class="kw">from</span> time <span class="kw">import</span> strftime
+<span class="kw">from</span> datetime <span class="kw">import</span> datetime
+<span class="kw">import</span> shutil
+myPath = os.path.abspath(os.path.join(getBundlePath(), os.pardir))
+<span class="cmt">#192.168.20.1/CLUJ/2013/TIM/SETTEMBRE/11.09.2013/visure
+</span><span class="cmt">#anca.palie    4uk.palie
+</span>
+<span class="kw">import</span> MiscFunctions
+reload(MiscFunctions)
+<span class="kw">from</span> MiscFunctions <span class="kw">import</span> *
+
+usernameCRM = <span class="str">"8110000085100"</span>
+passwordCRM = <span class="str">"!GENTILISSIMALORI30"</span>
+
+regionsFile = myPath + <span class="str">"\\Regions.csv"</span>
+logDir = myPath + <span class="str">"\\Log\\"</span> + strftime(<span class="str">"Logger_%d_%m_%Y"</span>) + <span class="str">"\\"</span>
+logFis = logDir + <span class="str">"log.txt"</span>
+outDir = myPath + <span class="str">"\\Output\\"</span>
+outFis = outDir + <span class="str">"output.txt"</span>
+bkDir = myPath + <span class="str">"\\Back-up\\"</span>
+inFis = myPath + <span class="str">"input.xls"</span>
+
+<span class="cmt">#global variables
+</span>regionList = []
+prefixTelItalia = [<span class="dig">10</span>,<span class="dig">11</span>,<span class="dig">121</span>,<span class="dig">122</span>,<span class="dig">123</span>,<span class="dig">124</span>,<span class="dig">125</span>,<span class="dig">131</span>,<span class="dig">141</span>,<span class="dig">142</span>,<span class="dig">143</span>,<span class="dig">144</span>,<span class="dig">15</span>,<span class="dig">161</span>,<span class="dig">163</span>,<span class="dig">165</span>,<span class="dig">166</span>,<span class="dig">171</span>,<span class="dig">172</span>,<span class="dig">173</span>,<span class="dig">174</span>,<span class="dig">175</span>,<span class="dig">182</span>,<span class="dig">183</span>,<span class="dig">184</span>,<span class="dig">185</span>,<span class="dig">187</span>,<span class="dig">19</span>,<span class="dig">2</span>,<span class="dig">30</span>,<span class="dig">31</span>,<span class="dig">321</span>,<span class="dig">322</span>,<span class="dig">323</span>,<span class="dig">324</span>,<span class="dig">331</span>,<span class="dig">332</span>,<span class="dig">334</span>,<span class="dig">341</span>,<span class="dig">342</span>,<span class="dig">343</span>,<span class="dig">344</span>,<span class="dig">345</span>,<span class="dig">346</span>,<span class="dig">35</span>,<span class="dig">362</span>,<span class="dig">363</span>,<span class="dig">364</span>,<span class="dig">365</span>,<span class="dig">369</span>,<span class="dig">371</span>,<span class="dig">372</span>,<span class="dig">373</span>,<span class="dig">374</span>,<span class="dig">375</span>,<span class="dig">376</span>,<span class="dig">377</span>,<span class="dig">381</span>,<span class="dig">382</span>,<span class="dig">383</span>,<span class="dig">384</span>,<span class="dig">385</span>,<span class="dig">386</span>,<span class="dig">39</span>,<span class="dig">40</span>,<span class="dig">41</span>,<span class="dig">0421</span>,<span class="dig">0422</span>,<span class="dig">0423</span>,<span class="dig">0424</span>,<span class="dig">425</span>,<span class="dig">426</span>,<span class="dig">427</span>,<span class="dig">428</span>,<span class="dig">429</span>,<span class="dig">431</span>,<span class="dig">432</span>,<span class="dig">433</span>,<span class="dig">434</span>,<span class="dig">435</span>,<span class="dig">436</span>,<span class="dig">437</span>,<span class="dig">438</span>,<span class="dig">439</span>,<span class="dig">442</span>,<span class="dig">444</span>,<span class="dig">445</span>,<span class="dig">45</span>,<span class="dig">461</span>,<span class="dig">462</span>,<span class="dig">463</span>,<span class="dig">464</span>,<span class="dig">465</span>,<span class="dig">471</span>,<span class="dig">472</span>,<span class="dig">473</span>,<span class="dig">474</span>,<span class="dig">481</span>,<span class="dig">49</span>,<span class="dig">50</span>,<span class="dig">51</span>,<span class="dig">521</span>,<span class="dig">522</span>,<span class="dig">523</span>,<span class="dig">524</span>,<span class="dig">525</span>,<span class="dig">532</span>,<span class="dig">533</span>,<span class="dig">534</span>,<span class="dig">535</span>,<span class="dig">536</span>,<span class="dig">541</span>,<span class="dig">542</span>,<span class="dig">543</span>,<span class="dig">544</span>,<span class="dig">545</span>,<span class="dig">546</span>,<span class="dig">547</span>,<span class="dig">549</span>,<span class="dig">55</span>,<span class="dig">564</span>,<span class="dig">566</span>,<span class="dig">571</span>,<span class="dig">572</span>,<span class="dig">573</span>,<span class="dig">574</span>,<span class="dig">575</span>,<span class="dig">577</span>,<span class="dig">578</span>,<span class="dig">583</span>,<span class="dig">584</span>,<span class="dig">585</span>,<span class="dig">586</span>,<span class="dig">587</span>,<span class="dig">588</span>,<span class="dig">59</span>,<span class="dig">6</span>,<span class="dig">70</span>,<span class="dig">71</span>,<span class="dig">721</span>,<span class="dig">722</span>,<span class="dig">73</span>,<span class="dig">731</span>,<span class="dig">732</span>,<span class="dig">733</span>,<span class="dig">734</span>,<span class="dig">735</span>,<span class="dig">736</span>,<span class="dig">737</span>,<span class="dig">74</span>,<span class="dig">742</span>,<span class="dig">743</span>,<span class="dig">744</span>,<span class="dig">746</span>,<span class="dig">75</span>,<span class="dig">761</span>,<span class="dig">763</span>,<span class="dig">765</span>,<span class="dig">766</span>,<span class="dig">769</span>,<span class="dig">771</span>,<span class="dig">773</span>,<span class="dig">774</span>,<span class="dig">775</span>,<span class="dig">776</span>,<span class="dig">781</span>,<span class="dig">782</span>,<span class="dig">783</span>,<span class="dig">784</span>,<span class="dig">785</span>,<span class="dig">789</span>,<span class="dig">79</span>,<span class="dig">80</span>,<span class="dig">81</span>,<span class="dig">82</span>,<span class="dig">823</span>,<span class="dig">824</span>,<span class="dig">825</span>,<span class="dig">827</span>,<span class="dig">828</span>,<span class="dig">831</span>,<span class="dig">832</span>,<span class="dig">833</span>,<span class="dig">835</span>,<span class="dig">836</span>,<span class="dig">85</span>,<span class="dig">861</span>,<span class="dig">862</span>,<span class="dig">863</span>,<span class="dig">864</span>,<span class="dig">865</span>,<span class="dig">871</span>,<span class="dig">872</span>,<span class="dig">873</span>,<span class="dig">874</span>,<span class="dig">875</span>,<span class="dig">881</span>,<span class="dig">882</span>,<span class="dig">883</span>,<span class="dig">884</span>,<span class="dig">885</span>,<span class="dig">89</span>,<span class="dig">90</span>,<span class="dig">91</span>,<span class="dig">921</span>,<span class="dig">922</span>,<span class="dig">923</span>,<span class="dig">924</span>,<span class="dig">925</span>,<span class="dig">931</span>,<span class="dig">932</span>,<span class="dig">933</span>,<span class="dig">934</span>,<span class="dig">935</span>,<span class="dig">941</span>,<span class="dig">942</span>,<span class="dig">95</span>,<span class="dig">961</span>,<span class="dig">962</span>,<span class="dig">963</span>,<span class="dig">964</span>,<span class="dig">965</span>,<span class="dig">966</span>,<span class="dig">967</span>,<span class="dig">968</span>,<span class="dig">971</span>,<span class="dig">972</span>,<span class="dig">973</span>,<span class="dig">974</span>,<span class="dig">975</span>,<span class="dig">976</span>,<span class="dig">981</span>,<span class="dig">982</span>,<span class="dig">983</span>,<span class="dig">984</span>,<span class="dig">985</span>,<span class="dig">99</span>,<span class="dig">800</span>]
+siglaProvinceDict = getProvinceDict()
+socDict = getSocDict()
+inputData = {}
+cfData = {}
+CFA=<span class="str">"888201412656"</span>
+
+<span class="cmt">#sv-maximizeaza citrix
+</span><span class="kw">def</span> citrixMax():
+    <span class="kw">if</span> exists(AutoImages.imgDict[<span class="str">"citrixLogo"</span>], <span class="dig">2</span>):
+        <span class="skw">doubleClick</span>(AutoImages.imgDict[<span class="str">"citrixLogo"</span>]); <span class="skw">wait</span>(<span class="dig">2</span>)
+    <span class="kw">elif</span> exists(AutoImages.imgDict[<span class="str">"citrixLogo2"</span>], <span class="dig">2</span>):
+        <span class="skw">doubleClick</span>(AutoImages.imgDict[<span class="str">"citrixLogo2"</span>]); <span class="skw">wait</span>(<span class="dig">2</span>)
+    <span class="kw">else</span>:
+        <span class="kw">print</span> <span class="str">"Problem at Max"</span>
+
+<span class="cmt">#sv-minimizeaza citrix
+</span><span class="kw">def</span> citrixMin():
+    <span class="kw">if</span> exists(AutoImages.imgDict[<span class="str">"citrixCom"</span>],<span class="dig">2</span>):
+        hover(AutoImages.imgDict[<span class="str">"citrixCom"</span>]); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">click</span>(AutoImages.imgDict[<span class="str">"citrixClose"</span>]); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="kw">else</span>:
+        <span class="kw">print</span> <span class="str">"Problem at Min"</span>
+
+<span class="cmt">#sv-creeaza diz/fis ZC (dak nu e deja)
+</span><span class="kw">def</span> MakeFiles():
+    <span class="kw">if</span> <span class="kw">not</span> os.path.exists(logDir):
+        os.makedirs(logDir)
+    <span class="kw">if</span> <span class="kw">not</span> os.path.exists(logFis):
+        fo = open(logFis, <span class="str">"wb"</span>)
+        fo.close()
+    <span class="kw">if</span> <span class="kw">not</span> os.path.exists(inFis):
+        <span class="kw">pass</span>
+        <span class="cmt">#writeToLog("Could not find input file. Exit...")
+</span>    <span class="kw">if</span> <span class="kw">not</span> os.path.exists(outDir):
+        os.makedirs(outDir)
+    <span class="kw">if</span> <span class="kw">not</span> os.path.exists(outFis):
+        fo = open(outFis, <span class="str">"wb"</span>)
+        fo.close()
+    <span class="kw">if</span> <span class="kw">not</span> os.path.exists(bkDir):
+        os.makedirs(bkDir)
+
+<span class="cmt">#sv-capture la ecran si copie fisimg in dir logZC
+</span><span class="kw">def</span> CaptureScreen():
+    img = Screen(<span class="dig">0</span>).<span class="skw">capture</span>(Screen(<span class="dig">0</span>).getBounds())
+    shutil.copy2(img, logDir+strftime(<img src="[%d_%m_%Y]Captura Exceptie -- Time[%H_%M_%S].png" />))
+
+<span class="cmt">#sv-scrie mesaj in fis logZC
+</span><span class="kw">def</span> writeToLog(mesaj):
+    myfile = file(logFis, <span class="str">"a"</span>)
+    myfile.write(strftime(<span class="str">"[%H:%M:%S]"</span>) + <span class="str">" - "</span> + mesaj +<span class="str">"\n"</span>)
+    myfile.close()
+
+<span class="cmt">#sv-scrie mesaj in fis output
+</span><span class="kw">def</span> writeToOutput(mesaj):
+    myfile = file(outFis, <span class="str">"a"</span>)
+    myfile.write(mesaj +<span class="str">"\n"</span>)
+    myfile.close()
+
+<span class="cmt">#sv-scrie datele dupa procesari
+</span><span class="kw">def</span> printData():
+    <span class="kw">print</span> <span class="str">"ID-----------------------"</span>
+    <span class="kw">for</span> entry <span class="kw">in</span> inputData.items():
+        <span class="kw">print</span> <span class="str">"ID"</span>,entry,<span class="str">"\n"</span>
+    <span class="kw">print</span> <span class="str">"CFD-----------------------"</span>
+    <span class="kw">for</span> entry <span class="kw">in</span> cfData.items():
+        <span class="kw">print</span> <span class="str">"CFD"</span>,entry,<span class="str">"\n"</span>
+    <span class="kw">print</span> <span class="str">"-----------------------"</span>
+
+<span class="cmt">#sv-click pe "start", apoi "programs", apoi "crmaffari"
+</span><span class="kw">def</span> OpenCRM():
+    <span class="kw">if</span> <span class="kw">not</span> verifyExistReg(<span class="str">"rmenu"</span>, <span class="str">"crmlogged"</span>, <span class="dig">5</span>):
+        tryClickReg(<span class="str">"rbottom"</span>, <span class="str">"start"</span>, <span class="dig">10</span>)
+        tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"programs"</span>, <span class="dig">10</span>)
+        tryClickReg(<span class="str">"rwindow"</span>, <span class="str">"crmaffari"</span>, <span class="dig">10</span>)
+        LoginCRM()
+
+<span class="cmt">#sv-click "usernameAffari", scrie user/pass, asteapta "rememberPasswordAffari"-Enter, apoi "secureIntCon"-Alt+Y-Enter, click "closeLayer", asteapta "welcomeBack"
+</span><span class="kw">def</span> LoginCRM():
+    tryClickReg(<span class="str">"rwindow"</span>, <span class="str">"usernameAffari"</span>, <span class="dig">15</span>)
+    <span class="skw">type</span>(usernameCRM + Key.TAB + passwordCRM + Key.ENTER); <span class="skw">wait</span>(<span class="dig">3</span>)
+    check = verifyExistReg(<span class="str">"rwindow"</span>, <span class="str">"rememberPasswordAffari"</span>, <span class="dig">10</span>)
+    <span class="skw">type</span>(Key.ENTER); <span class="skw">wait</span>(<span class="dig">2</span>)
+    check = verifyExistReg(<span class="str">"rwindow"</span>, <span class="str">"secureIntCon"</span>, <span class="dig">10</span>); <span class="skw">wait</span>(<span class="dig">3</span>)
+    <span class="skw">type</span>(<span class="str">'Y'</span>, KeyModifier.ALT); <span class="skw">wait</span>(<span class="dig">3</span>)
+    <span class="skw">type</span>(Key.ENTER); <span class="skw">wait</span>(<span class="dig">2</span>)
+    tryClickReg(<span class="str">"rwindow"</span>, <span class="str">"closeLayer"</span>, <span class="dig">10</span>)
+    <span class="skw">wait</span>(AutoImages.imgDict[<span class="str">"welcomeBack"</span>], <span class="dig">20</span>)
+
+<span class="cmt">#sv-Ctrl+Shift+x-tab-tab-Enter-tab-tab-Enter
+</span><span class="kw">def</span> LogOffCRM():
+    <span class="skw">type</span>(<span class="str">'x'</span> , KeyModifier.CTRL + KeyModifier.SHIFT); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">type</span>(Key.TAB + Key.TAB + Key.ENTER); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">type</span>(Key.TAB + Key.TAB + Key.ENTER)
+
+<span class="cmt">#sv-return prefix telFisso(pe baza de lista prefixTelItalia)
+</span><span class="kw">def</span> getPrefixTelFisso(telFisso):
+    i = <span class="dig">1</span>
+    <span class="kw">while</span>(True):
+        <span class="kw">if</span> i &gt; len(telFisso):
+            <span class="skw">type</span>(Key.PAGE_UP)
+            <span class="kw">return</span> <span class="str">"0"</span>;
+        <span class="kw">if</span> (int(telFisso[<span class="dig">0</span>:i]) <span class="kw">in</span> prefixTelItalia):
+            <span class="kw">return</span> <span class="str">"0"</span>+telFisso[<span class="dig">0</span>:i]
+        i+= <span class="dig">1</span>
+
+<span class="cmt">#sv-ia din cod_fis info si populeaza cfData[] cu info
+</span><span class="kw">def</span> reverseCF():
+    <span class="kw">global</span> cfData
+
+    cod_fis=inputData[<span class="str">"cf"</span>]
+    year = <span class="str">'19'</span> + cod_fis[<span class="dig">6</span>:<span class="dig">8</span>]
+    month = getCfMonth(cod_fis[<span class="dig">8</span>])
+    day = cod_fis[<span class="dig">9</span>:<span class="dig">11</span>]
+    <span class="kw">if</span> int(day) &lt; <span class="dig">41</span>:
+        cfData[<span class="str">"sex"</span>] = <span class="str">"M"</span>
+    <span class="kw">else</span>:
+        cfData[<span class="str">"sex"</span>] = <span class="str">"F"</span>
+        day=str(int(day)-<span class="dig">40</span>)
+    cfData[<span class="str">"birthday"</span>] = str(day) + <span class="str">'/'</span> + str(month) + <span class="str">'/'</span> + str(year)
+    cfData[<span class="str">"codice_catastale"</span>] = cod_fis[<span class="dig">11</span>:<span class="dig">15</span>]
+    <span class="kw">try</span>:
+        <span class="kw">if</span> cfData[<span class="str">"codice_catastale"</span>].startswith(<span class="str">"Z"</span>):
+            xlsreader = getXLSRows(myPath + <span class="str">"\\statiEsteri.xls"</span>, <span class="dig">0</span>, -<span class="dig">1</span>)
+            <span class="kw">for</span> serow <span class="kw">in</span> xlsreader:
+                <span class="kw">if</span> cfData[<span class="str">"codice_catastale"</span>]==serow[<span class="dig">4</span>]:
+                    cfData[<span class="str">"luogoDiNascita"</span>]=serow[<span class="dig">3</span>].replace(<span class="str">"SAN"</span>, <span class="str">"S."</span>)
+                    cfData[<span class="str">"sigla"</span>]=<span class="str">"EE"</span>
+                    cfData[<span class="str">"provincia"</span>] = <span class="str">"EE"</span>
+                    <span class="kw">break</span>
+        <span class="kw">else</span>:
+            fin=open(myPath + <span class="str">"\\Regions.csv"</span>, <span class="str">'rb'</span>)
+            reader = csv.reader(fin, delimiter=<span class="str">';'</span>)
+            <span class="kw">for</span> row <span class="kw">in</span> reader:
+                <span class="kw">if</span> cfData[<span class="str">"codice_catastale"</span>]==row[<span class="dig">2</span>]:
+                    cfData[<span class="str">"luogoDiNascita"</span>]=row[<span class="dig">0</span>].replace(<span class="str">"SAN"</span>, <span class="str">"S."</span>)
+                    cfData[<span class="str">"sigla"</span>]=row[<span class="dig">1</span>]
+                    cfData[<span class="str">"provincia"</span>] = siglaProvinceDict[cfData[<span class="str">"sigla"</span>]]
+                    <span class="kw">break</span>
+    <span class="kw">except</span> KeyError:
+        <span class="kw">raise</span> Exception(<span class="str">"Could not get provincia, Error at finding sigla!"</span>)
+    <span class="kw">except</span>:
+        <span class="kw">raise</span> Exception(<span class="str">"Error searching Regions.csv"</span>)
+    <span class="kw">finally</span>:
+        <span class="kw">if</span> <span class="kw">not</span> cfData[<span class="str">"codice_catastale"</span>].startswith(<span class="str">"Z"</span>):
+            fin.close()
+
+<span class="cmt">#sv-proceseaza date din fis de input(un singur row) si populeaza inputData/cfData
+</span><span class="kw">def</span> processInputRow(row):
+    <span class="kw">global</span> inputData
+
+    inputData[<span class="str">"listaProvenienza"</span>] = row[<span class="dig">0</span>]
+    inputData[<span class="str">"dataContratto"</span>]=row[<span class="dig">1</span>]
+    inputData[<span class="str">"cc"</span>]=row[<span class="dig">2</span>].strip()
+    inputData[<span class="str">"piva"</span>] = row[<span class="dig">3</span>].strip()
+    <span class="kw">while</span> (len(inputData[<span class="str">"piva"</span>]) &lt; <span class="dig">11</span>):
+        inputData[<span class="str">"piva"</span>] = <span class="str">"0"</span> + inputData[<span class="str">"piva"</span>]
+    inputData[<span class="str">"ragioneSociale"</span>] = row[<span class="dig">4</span>].strip()
+    inputData[<span class="str">"telFisso"</span>] = row[<span class="dig">5</span>].strip()
+    inputData[<span class="str">"prefissoTelFisso"</span>] = getPrefixTelFisso(inputData[<span class="str">"telFisso"</span>])
+    inputData[<span class="str">"telFisso"</span>] = inputData[<span class="str">"telFisso"</span>][<span class="dig">3</span>:len(inputData[<span class="str">"telFisso"</span>])]
+    inputData[<span class="str">"celular"</span>] = row[<span class="dig">6</span>].strip()
+    inputData[<span class="str">"prefissoCelular"</span>] = inputData[<span class="str">"celular"</span>][<span class="dig">0</span>:<span class="dig">3</span>]
+    inputData[<span class="str">"celular"</span>] = inputData[<span class="str">"celular"</span>][<span class="dig">3</span>:len(inputData[<span class="str">"celular"</span>])]
+    inputData[<span class="str">"titolare"</span>] = row[<span class="dig">7</span>].strip()
+    inputData[<span class="str">"cf"</span>] = row[<span class="dig">8</span>].strip()
+    splited = inputData[<span class="str">"titolare"</span>].split(<span class="str">" "</span>)
+    <span class="kw">if</span> len(splited[<span class="dig">0</span>]) &lt; <span class="dig">4</span>:
+        splited[<span class="dig">0</span>] = splited[<span class="dig">0</span>] + <span class="str">" "</span> + splited[<span class="dig">1</span>]
+    <span class="kw">if</span> (inputData[<span class="str">"cf"</span>][<span class="dig">0</span>] <span class="kw">in</span> splited[<span class="dig">0</span>]) <span class="kw">and</span> (inputData[<span class="str">"cf"</span>][<span class="dig">1</span>] <span class="kw">in</span> splited[<span class="dig">0</span>]) <span class="kw">and</span> (inputData[<span class="str">"cf"</span>][<span class="dig">2</span>] <span class="kw">in</span> splited[<span class="dig">0</span>]):
+        inputData[<span class="str">"cognome"</span>] = splited[<span class="dig">0</span>].strip().upper()
+        inputData[<span class="str">"nome"</span>] = inputData[<span class="str">"titolare"</span>][len(splited[<span class="dig">0</span>]):len(inputData[<span class="str">"titolare"</span>])].strip().upper()
+    <span class="kw">if</span> (inputData[<span class="str">"cf"</span>][<span class="dig">0</span>] <span class="kw">in</span> splited[len(splited)-<span class="dig">1</span>]) <span class="kw">and</span> (inputData[<span class="str">"cf"</span>][<span class="dig">1</span>] <span class="kw">in</span> splited[len(splited)-<span class="dig">1</span>]) <span class="kw">and</span> (inputData[<span class="str">"cf"</span>][<span class="dig">2</span>] <span class="kw">in</span> splited[len(splited)-<span class="dig">1</span>]):
+        inputData[<span class="str">"cognome"</span>] = splited[len(splited)-<span class="dig">1</span>].strip().upper()
+        inputData[<span class="str">"nome"</span>] = inputData[<span class="str">"titolare"</span>][<span class="dig">0</span>:len(inputData[<span class="str">"titolare"</span>])-len(inputData[<span class="str">"cognome"</span>])].strip().upper()
+    documento = row[<span class="dig">9</span>].strip()
+    nrs=re.findall(<span class="str">r'[0-9]+'</span>,documento.strip().split(<span class="str">"_"</span>)[<span class="dig">2</span>].split(<span class="str">":"</span>)[<span class="dig">1</span>].strip())
+    inputData[<span class="str">"dataRilascioDocumento"</span>] = <span class="str">"%s/%s/%d"</span>%(nrs[<span class="dig">0</span>],nrs[<span class="dig">1</span>],int(nrs[<span class="dig">2</span>])-<span class="dig">10</span>)<span class="cmt">#data din CI - 10 years</span>
+    inputData[<span class="str">"luogoRilascio"</span>] = documento.strip().split(<span class="str">"_"</span>)[<span class="dig">1</span>].split(<span class="str">":"</span>)[<span class="dig">1</span>].strip()
+    nDoc = documento.strip().split(<span class="str">"_"</span>)[<span class="dig">0</span>].strip().split(<span class="str">":"</span>)[<span class="dig">1</span>].strip().split(<span class="str">" "</span>)
+    inputData[<span class="str">"numeroDocumento"</span>] = nDoc[len(nDoc)-<span class="dig">1</span>].strip()
+    <span class="kw">if</span> inputData[<span class="str">"numeroDocumento"</span>][len(inputData[<span class="str">"numeroDocumento"</span>])-<span class="dig">2</span>].isdigit() <span class="kw">and</span> inputData[<span class="str">"numeroDocumento"</span>][len(inputData[<span class="str">"numeroDocumento"</span>])-<span class="dig">1</span>].isdigit()==False:
+        inputData[<span class="str">"tipoDocumento"</span>] = <span class="str">"PATENTE"</span>
+    <span class="kw">elif</span> inputData[<span class="str">"numeroDocumento"</span>][<span class="dig">1</span>].isdigit() <span class="kw">and</span> inputData[<span class="str">"numeroDocumento"</span>][len(inputData[<span class="str">"numeroDocumento"</span>])-<span class="dig">1</span>].isdigit():
+        inputData[<span class="str">"tipoDocumento"</span>] = <span class="str">"PASSAPORTO"</span>
+    <span class="kw">else</span>:
+        inputData[<span class="str">"tipoDocumento"</span>] = <span class="str">"CARTA DI IDENTITA"</span>
+    inputData[<span class="str">"mail"</span>] = row[<span class="dig">12</span>].strip()
+    inputData[<span class="str">"tipovendita"</span>]=row[<span class="dig">14</span>].strip()
+    indirizzo = row[<span class="dig">13</span>].strip()
+    inputData[<span class="str">"cap"</span>] = indirizzo.strip().split(<span class="str">"_"</span>)[<span class="dig">3</span>].strip()
+    inputData[<span class="str">"provinciaIndirizzo"</span>] = indirizzo.strip().split(<span class="str">"_"</span>)[<span class="dig">2</span>].strip()
+    inputData[<span class="str">"comuneSedeLegale2"</span>] = indirizzo.strip().split(<span class="str">"_"</span>)[<span class="dig">1</span>].strip()
+    inputData[<span class="str">"siglai"</span>] = siglaProvinceDict.keys()[siglaProvinceDict.values().index(inputData[<span class="str">"provinciaIndirizzo"</span>])]
+    street = indirizzo.strip().split(<span class="str">"_"</span>)[<span class="dig">0</span>].strip()
+    inputData[<span class="str">"civicoSedeLegale"</span>] = street.split(<span class="str">" "</span>)[len(street.split(<span class="str">" "</span>))-<span class="dig">1</span>].strip()
+    <span class="kw">if</span>(inputData[<span class="str">"civicoSedeLegale"</span>]==<span class="str">""</span>):
+        inputData[<span class="str">"civicoSedeLegale"</span>]=<span class="str">"S.N.C."</span>
+    <span class="kw">else</span>:
+        street = street.replace(inputData[<span class="str">"civicoSedeLegale"</span>], <span class="str">""</span>)
+    inputData[<span class="str">"partTopSedeLegale"</span>] = street.split(<span class="str">" "</span>)[<span class="dig">0</span>].strip()
+    inputData[<span class="str">"viaSedeLegale"</span>]  = street.replace(inputData[<span class="str">"partTopSedeLegale"</span>], <span class="str">""</span>).strip()
+    inputData[<span class="str">"modalitaPagamento"</span>] = row[<span class="dig">18</span>]
+    inputData[<span class="str">"ivr"</span>]=row[<span class="dig">19</span>]
+
+    reverseCF()
+    <span class="kw">if</span> <span class="str">"DITTA"</span> <span class="kw">in</span> inputData[<span class="str">"listaProvenienza"</span>].upper():
+        inputData[<span class="str">"giuridica"</span>]=<span class="str">"ditta"</span>
+    <span class="kw">else</span>:
+        <span class="kw">for</span> socItem <span class="kw">in</span> socDict.items():
+            <span class="kw">if</span> socItem[<span class="dig">0</span>] <span class="kw">in</span> inputData[<span class="str">"ragioneSociale"</span>]:
+                inputData[<span class="str">"giuridica"</span>]=socItem[<span class="dig">1</span>]
+                <span class="kw">return</span>
+        <span class="kw">raise</span> Exception(<span class="str">"Could not find forma giuridica!"</span>)
+
+<span class="kw">def</span> startClienti():
+    <span class="kw">global</span> inputData
+
+    tryClickReg(<span class="str">"rmenu"</span>, <span class="str">"clienti"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+    <span class="kw">if</span> inputData[<span class="str">"giuridica"</span>]==<span class="str">"ditta"</span>:
+        tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"codiceFiscaleField"</span>, <span class="dig">10</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"cf"</span>]); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    <span class="kw">else</span>:
+        tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"pivaField"</span>, <span class="dig">10</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"piva"</span>]); <span class="skw">wait</span>(<span class="dig">0</span>,<span class="dig">5</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"clientiCerca"</span>, <span class="dig">10</span>)
+
+    <span class="cmt">#verify if is new
+</span>    <span class="kw">if</span> verifyExistReg(<span class="str">"rmid"</span>, <span class="str">"cfpivaNonEsiste"</span>, <span class="dig">5</span>):
+        <span class="kw">print</span> <span class="str">"Intrarea Nu Exista!"</span>
+        tryClickReg(<span class="str">"rmid"</span>, <span class="str">"cfpivaNonEsiste"</span>, <span class="dig">3</span>)
+    <span class="kw">else</span>:
+        <span class="kw">print</span> <span class="str">"Intrarea Deja Exista!"</span>
+        <span class="kw">return</span>    <span class="cmt">#TO DO LATER !!!</span>
+
+<span class="cmt">#sv-certificazione-nu se poate intoarce la asta dupa click pe "accettaDatiUtente"
+</span><span class="kw">def</span> certificazione():
+    <span class="kw">global</span> inputData, cfData
+
+    <span class="kw">if</span> inputData[<span class="str">"giuridica"</span>]!=<span class="str">"ditta"</span>:
+        tryClickReg(<span class="str">"rrow2"</span>, <span class="str">"giuridica"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        DeleteAndType(inputData[<span class="str">"giuridica"</span>]+Key.TAB); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        tab(-<span class="dig">4</span>, <span class="dig">0</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"ragioneSociale"</span>]); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"siglaceva"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"siglai"</span>]+Key.TAB*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    <span class="kw">else</span>:
+        tryClickReg(<span class="str">"rrow2"</span>, <span class="str">"naturaCliente"</span>, <span class="dig">10</span>)
+        <span class="skw">type</span>(Key.DOWN + Key.UP + Key.ENTER); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"piva"</span>, <span class="dig">10</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"piva"</span>] + Key.TAB); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"ragioneSociale"</span>] + Key.TAB*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"cf"</span>] + Key.TAB); <span class="skw">wait</span>(<span class="dig">0.3</span>)
+        <span class="skw">type</span>(<span class="str">"DATO NON PRESE"</span> + Key.TAB*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"nome"</span>] + Key.TAB*<span class="dig">3</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"cognome"</span>] + Key.TAB*<span class="dig">3</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">type</span>(cfData[<span class="str">"sex"</span>] + Key.TAB*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"tipoDocumento"</span>] + Key.TAB); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">type</span>(cfData[<span class="str">"birthday"</span>] + Key.TAB*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"numeroDocumento"</span>] +  Key.TAB); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">type</span>(cfData[<span class="str">"provincia"</span>] + Key.TAB*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"dataRilascioDocumento"</span>] + Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(cfData[<span class="str">"luogoDiNascita"</span>] + Key.TAB*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"luogoRilascio"</span>] + Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"siglai"</span>] + Key.TAB*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+
+    <span class="skw">type</span>(inputData[<span class="str">"comuneSedeLegale2"</span>] + Key.TAB); <span class="skw">wait</span>(<span class="dig">5</span>)
+    tryClickReg(<span class="str">"rrow2"</span>, <span class="str">"partTopSedeLegale"</span>, <span class="dig">5</span>)
+    <span class="skw">type</span>(inputData[<span class="str">"partTopSedeLegale"</span>]); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tryClickReg(<span class="str">"rrow2"</span>, <span class="str">"viaSedeLegale"</span>, <span class="dig">5</span>)
+    <span class="skw">type</span>(inputData[<span class="str">"viaSedeLegale"</span>] ); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tryClickReg(<span class="str">"rrow2"</span>, <span class="str">"civicoSedeLegale"</span>, <span class="dig">5</span>)
+    <span class="skw">type</span>(inputData[<span class="str">"civicoSedeLegale"</span>]); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"datiUtente"</span>, <span class="dig">5</span>)
+    <span class="skw">type</span>(Key.PAGE_DOWN*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">3</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"prefissoContatto"</span>, <span class="dig">5</span>)
+    <span class="skw">type</span>(inputData[<span class="str">"prefissoTelFisso"</span>] + Key.TAB*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">type</span>(inputData[<span class="str">"prefissoCelular"</span>] + Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">type</span>(inputData[<span class="str">"telFisso"</span>] + Key.TAB*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">type</span>(inputData[<span class="str">"celular"</span>] + Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">type</span>(inputData[<span class="str">"mail"</span>].split(<span class="str">"@"</span>)[<span class="dig">0</span>])
+    <span class="skw">type</span>(<span class="str">"@"</span>)
+    <span class="cmt">#type(r";", KeyModifier.CTRL + KeyModifier.ALT)
+</span>    <span class="skw">type</span>(inputData[<span class="str">"mail"</span>].split(<span class="str">"@"</span>)[<span class="dig">1</span>]); <span class="skw">wait</span>(<span class="dig">1.5</span>); tab(<span class="dig">1</span>)
+
+    <span class="skw">popup</span>(<span class="str">"B4 CERTIFICA"</span>)
+    tryClickReg(<span class="str">"rmenu"</span>, <span class="str">"accettaDatiUtente"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">15</span>)
+    tryClickReg(<span class="str">"rmenu"</span>, <span class="str">"certifica"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">15</span>)
+    tryClickReg(<span class="str">"rmenu"</span>, <span class="str">"certifica"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">15</span>)
+    tryClickReg(<span class="str">"rmenu"</span>, <span class="str">"accettaDatiACLI"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">15</span>)
+
+<span class="cmt">#sv-anagrafica
+</span><span class="kw">def</span> indirizzo():
+    <span class="kw">global</span> inputData, cfData
+
+    <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.PAGE_DOWN); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="kw">if</span> <span class="kw">not</span> verifyExistReg(<span class="str">"rrows"</span>, <span class="str">"indirizziHover"</span>, <span class="dig">5</span>):
+        tryClickReg(<span class="str">"rrows"</span>, <span class="str">"indirizzi"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+
+    equals = verifyLineValues([inputData[<span class="str">"provinciaIndirizzo"</span>], inputData[<span class="str">"siglai"</span>], inputData[<span class="str">"comuneSedeLegale2"</span>],
+                 inputData[<span class="str">"partTopSedeLegale"</span>], inputData[<span class="str">"viaSedeLegale"</span>], inputData[<span class="str">"civicoSedeLegale"</span>]],
+            [<span class="dig">1</span>, <span class="dig">1</span>, <span class="dig">1</span>, <span class="dig">4</span>, <span class="dig">1</span>, <span class="dig">1</span>, <span class="dig">7</span>], <span class="str">"indirizziStart"</span>)
+
+    <span class="kw">if</span> equals == False:
+        tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"nuovo"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(Key.TAB + inputData[<span class="str">"provinciaIndirizzo"</span>] + Key.TAB*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"comuneSedeLegale2"</span>] + Key.TAB*<span class="dig">4</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"partTopSedeLegale"</span>] + Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"viaSedeLegale"</span>]  + Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"civicoSedeLegale"</span>] + Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(Key.ENTER); <span class="skw">wait</span>(<span class="dig">5</span>)
+        <span class="skw">type</span>(Key.ENTER); <span class="skw">wait</span>(<span class="dig">25</span>)
+
+<span class="kw">def</span> referenti():
+    <span class="kw">if</span> <span class="kw">not</span> verifyExistReg(<span class="str">"rrows"</span>, <span class="str">"referentiSel"</span>, <span class="dig">5</span>):
+        tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"referenti"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+    <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.PAGE_UP); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"referentiStart"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"referentiStart"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>);
+    GetTextSel(); tab(<span class="dig">1</span>)
+    <span class="kw">if</span> GetTextSel()==<span class="str">""</span>:
+        tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"nuovo"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="kw">if</span> inputData[<span class="str">"giuridica"</span>]!=<span class="str">"ditta"</span>:
+            <span class="skw">type</span>(inputData[<span class="str">"cf"</span>]+Key.TAB); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+            <span class="skw">type</span>(inputData[<span class="str">"nome"</span>]+Key.TAB); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+            <span class="skw">type</span>(inputData[<span class="str">"cognome"</span>]+Key.TAB); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+            <span class="skw">type</span>(cfData[<span class="str">"birthday"</span>]+Key.TAB); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+            <span class="skw">type</span>(cfData[<span class="str">"sigla"</span>]+Key.TAB); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+            <span class="skw">type</span>(cfData[<span class="str">"luogoDiNascita"</span>]+Key.TAB); <span class="skw">wait</span>(<span class="dig">1.5</span>)
+            <span class="skw">type</span>(cfData[<span class="str">"sex"</span>]+Key.TAB); <span class="skw">wait</span>(<span class="dig">0.3</span>); tab(<span class="dig">11</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+            <span class="skw">type</span>(inputData[<span class="str">"tipoDocumento"</span>]+Key.TAB); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+            <span class="skw">type</span>(inputData[<span class="str">"numeroDocumento"</span>]+Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+            <span class="skw">type</span>(inputData[<span class="str">"luogoRilascio"</span>]+Key.TAB); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+            <span class="skw">type</span>(inputData[<span class="str">"dataRilascioDocumento"</span>]+Key.TAB*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="kw">else</span>:
+            tab(<span class="dig">23</span>, <span class="dig">0</span>)
+        <span class="kw">if</span> cfData[<span class="str">"sex"</span>] == <span class="str">"M"</span>:
+            <span class="skw">type</span>(<span class="str">"SIG."</span>)
+        <span class="kw">else</span>:
+            <span class="skw">type</span>(<span class="str">"SIG.RA"</span>)
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="kw">if</span> verifyExistReg(<span class="str">"rrows"</span>, <span class="str">"refUnchecked"</span>, <span class="dig">5</span>):
+            tryClickReg(<span class="str">"rrows"</span>, <span class="str">"refUnchecked"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(<span class="str">"TUTTO"</span> + Key.TAB*<span class="dig">4</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+        tryClickReg(<span class="str">"rrows"</span>, <span class="str">"refCanale"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        DeleteAndType(<span class="str">"CARTACEO"</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(Key.TAB*<span class="dig">3</span>)
+        <span class="kw">if</span> verifyExistReg(<span class="str">"rrows"</span>, <span class="str">"refUnchecked"</span>, <span class="dig">5</span>):
+            tryClickReg(<span class="str">"rrows"</span>, <span class="str">"refUnchecked"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+
+    <span class="cmt">#TIPOLOGIA REFERENTI
+</span>    tryClickReg(<span class="str">"rrows"</span>, <span class="str">"tiporefStart"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    tryClickReg(<span class="str">"rrows"</span>, <span class="str">"tiporefStart"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    tab(<span class="dig">1</span>); <span class="skw">wait</span>(<span class="dig">3</span>)
+    listTipo = [<span class="str">"MANDATARIO"</span>, <span class="str">"MASTER"</span>, <span class="str">"REFERENTE PER CAMPAGNA"</span>]
+
+    <span class="kw">while</span>(True):
+        tab(<span class="dig">4</span>,<span class="dig">0</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        t=GetText()
+        <span class="kw">print</span> <span class="str">"TIPU--"</span>+t
+        <span class="kw">if</span> t <span class="kw">in</span> listTipo:
+            listTipo.remove(t)
+        <span class="kw">print</span> <span class="str">"LISTA--"</span>,listTipo
+        tab(<span class="dig">11</span>,<span class="dig">0</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+        <span class="kw">if</span>(GetText()==<span class="str">""</span>):
+            <span class="kw">break</span>
+    <span class="kw">for</span> tipo <span class="kw">in</span> listTipo:
+        tryClickReg(<span class="str">"rrow3"</span>, <span class="str">"nuovo"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"prefissoCelular"</span>] + Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"celular"</span>] + Key.TAB*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"mail"</span>].split(<span class="str">"@"</span>)[<span class="dig">0</span>])
+        <span class="skw">type</span>(<span class="str">"@"</span>)
+        <span class="cmt">#type(r";", KeyModifier.CTRL + KeyModifier.ALT)
+</span>        <span class="skw">type</span>(inputData[<span class="str">"mail"</span>].split(<span class="str">"@"</span>)[<span class="dig">1</span>]); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">type</span>(Key.TAB + tipo + Key.TAB*<span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"prefissoTelFisso"</span>] + Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"telFisso"</span>] + Key.TAB)
+
+    <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.PAGE_UP); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tryClickReg(<span class="str">"rrows"</span>,<span class="str">"acquisizioneConsensi"</span>,<span class="dig">10</span>)
+    tryClickReg(<span class="str">"rrows"</span>, <span class="str">"consensoP1mobile"</span>, <span class="dig">10</span>)
+    DeleteAndType(<span class="str">"NO"</span>); <span class="skw">wait</span>(<span class="dig">0.3</span>); tab(<span class="dig">1</span>, <span class="dig">0.5</span>)
+    <span class="skw">type</span>(usernameCRM); <span class="skw">wait</span>(<span class="dig">0.3</span>); tab(<span class="dig">2</span>, <span class="dig">0.5</span>)
+
+    <span class="cmt">#type("SI"); wait(0.3); tab(1, 0.5)    PROLLY NU TREBE
+</span>    <span class="cmt">#type(usernameCRM); wait(0.3)
+</span>    <span class="cmt">#click(Regions.pagepoint); type(Key.PAGE_DOWN); wait(1)
+</span>    <span class="cmt">#tryClickReg("rrow1", "consensoI2", 5)
+</span>    <span class="cmt">#DeleteAndType("SI"); wait(0.3); tab(1, 0.5)
+</span>    <span class="cmt">#type(usernameCRM); wait(0.3); tab(1, 0.5)
+</span>    <span class="cmt">#click(Regions.pagepoint); type(Key.PAGE_UP); wait(1)
+</span>
+<span class="kw">def</span> selectModalita():
+    selects = Regions.getRegion(<span class="str">"rrow1"</span>).findAll(AutoImages.imgDict[<span class="str">"selectPopUp2"</span>])
+    sorted_selects = sorted(selects, key=<span class="kw">lambda</span> m:m.y)
+    <span class="kw">for</span> modalitappi <span class="kw">in</span> range(<span class="dig">1</span>,<span class="dig">3</span>):
+        equals = verifyLineValues([inputData[<span class="str">"comuneSedeLegale2"</span>],
+                    inputData[<span class="str">"partTopSedeLegale"</span>]+ <span class="str">" "</span> +inputData[<span class="str">"viaSedeLegale"</span>]+ <span class="str">" "</span> +inputData[<span class="str">"civicoSedeLegale"</span>]]
+                , [<span class="dig">1</span>, <span class="dig">7</span>, <span class="dig">0</span>], <span class="str">"indppStart"</span>, sorted_selects[modalitappi], <span class="str">"capclear"</span>)
+    <span class="skw">click</span>(sorted_selects[<span class="dig">0</span>]); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    tab(<span class="dig">6</span>); <span class="skw">type</span>(<span class="str">"CAB"</span>+Key.TAB); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    <span class="skw">type</span>(inputData[<span class="str">"modalitaPagamento"</span>][<span class="dig">10</span>:<span class="dig">15</span>]+Key.ENTER); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="kw">if</span> verifyExist(<span class="str">"rwindow"</span>, <span class="str">"ricercaABI"</span>, <span class="dig">5</span>):
+        <span class="skw">wait</span>(<span class="dig">2</span>)
+        org=<span class="skw">find</span>(AutoImages.imgDict[<span class="str">"ricercaABI"</span>]).getCenter()
+        r1=Region(org.x-<span class="dig">26</span>, org.y+<span class="dig">23</span>, <span class="dig">56</span>, <span class="dig">23</span>)
+        <span class="kw">while</span>(len(r1.text())&gt;<span class="dig">1</span>):
+            r1.highlight(<span class="dig">1</span>)
+            <span class="kw">print</span> <span class="str">"TEXT "</span> + r1.text()
+            <span class="kw">if</span> r1.text()==inputData[<span class="str">"modalitaPagamento"</span>][<span class="dig">5</span>:<span class="dig">10</span>]:
+                <span class="skw">doubleClick</span>(r1); <span class="kw">return</span> True
+            r1=Region(r1.x, r1.y+<span class="dig">22</span>, <span class="dig">56</span>, <span class="dig">23</span>)
+        <span class="kw">if</span> <span class="kw">not</span> verifyExistReg(<span class="str">"rwindow"</span>, <span class="str">"rABIdown"</span>, <span class="dig">5</span>):
+            <span class="kw">return</span> False
+        r1=Region(r1.x, r1.y-<span class="dig">22</span>, <span class="dig">56</span>, <span class="dig">23</span>)
+        <span class="skw">click</span>(r1)
+        prev=<span class="str">"Nothing"</span>
+        <span class="kw">while</span>(prev!=r1.text()):
+            <span class="kw">print</span> <span class="str">"TEXT "</span> + r1.text()
+            <span class="kw">if</span> r1.text()==inputData[<span class="str">"modalitaPagamento"</span>][<span class="dig">5</span>:<span class="dig">10</span>]:
+                <span class="skw">doubleClick</span>(r1); <span class="kw">return</span> True
+            prev=r1.text()
+            tryClick(<span class="str">"rwindow"</span>, <span class="str">"rABIdown"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="kw">return</span> False
+
+<span class="kw">def</span> billing():
+    <span class="kw">global</span> CFA
+
+    <span class="kw">if</span> <span class="kw">not</span> verifyExistReg(<span class="str">"rrows"</span>, <span class="str">"billingSel"</span>, <span class="dig">5</span>):
+        tryClickReg(<span class="str">"rrow2"</span>, <span class="str">"billingAccount"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"nuovo"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">5</span>)
+
+    <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.PAGE_DOWN*<span class="dig">2</span>+Key.UP); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"CFA"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.2</span>)
+    CFA=GetText()
+    tryClickReg(<span class="str">"rrow3ex"</span>, <span class="str">"termScadenzaFattura"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.2</span>)
+    DeleteAndType(<span class="str">"30"</span>)
+    selects = Regions.getRegion(<span class="str">"rrow3ex"</span>).findAll(AutoImages.imgDict[<span class="str">"selectPopUp"</span>])
+    sorted_selects = sorted(selects, key=<span class="kw">lambda</span> m:m.y)
+    <span class="kw">for</span> billinppi <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">2</span>):
+        verifyLineValues([inputData[<span class="str">"comuneSedeLegale2"</span>],
+                    inputData[<span class="str">"partTopSedeLegale"</span>]+ <span class="str">" "</span> +inputData[<span class="str">"viaSedeLegale"</span>]+ <span class="str">" "</span> +inputData[<span class="str">"civicoSedeLegale"</span>]]
+                , [<span class="dig">1</span>, <span class="dig">7</span>, <span class="dig">0</span>], <span class="str">"indppStart"</span>, sorted_selects[billinppi], <span class="str">"capclear"</span>)
+    <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.PAGE_UP); <span class="skw">wait</span>(<span class="dig">1</span>)
+
+    <span class="kw">if</span> inputData[<span class="str">"modalitaPagamento"</span>]!=<span class="str">"BOLLETTINO"</span>:
+        tryClickReg(<span class="str">"rrow3"</span>, <span class="str">"modalitaDiPagamento"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        DeleteAndType(<span class="str">"Domi"</span>); tab(<span class="dig">1</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"modalitaHeader"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+        <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.PAGE_DOWN*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"paese"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"modalitaPagamento"</span>][<span class="dig">0</span>:<span class="dig">2</span>]+ Key.TAB); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"modalitaPagamento"</span>][<span class="dig">2</span>:<span class="dig">4</span>]+ Key.TAB); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"modalitaPagamento"</span>][<span class="dig">4</span>]+ Key.TAB*<span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"modalitaPagamento"</span>][<span class="dig">15</span>:len(inputData[<span class="str">"modalitaPagamento"</span>])]+ Key.TAB*<span class="dig">4</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"cf"</span>]+ Key.TAB*<span class="dig">9</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(inputData[<span class="str">"cf"</span>]); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="kw">if</span> selectModalita()==False:
+            <span class="kw">raise</span> Exception(<span class="str">"Could not find ABI from modalitapagamento(text search)!"</span>)
+        <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.PAGE_UP*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">popup</span>(<span class="str">"B4 CONFERMA"</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"conferma"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">3</span>)
+
+<span class="cmt">#sv-contratti cannot go back
+</span><span class="kw">def</span> contratti():
+    <span class="kw">global</span> CFA
+
+    <span class="kw">if</span> <span class="kw">not</span> verifyExistReg(<span class="str">"rrows"</span>, <span class="str">"contrattiSel"</span>, <span class="dig">5</span>):
+        tryClickReg(<span class="str">"rrow2"</span>, <span class="str">"contratti"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"nuovo"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">3</span>)
+    tryClickReg(<span class="str">"rrow2"</span>, <span class="str">"dataStipula"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+    DeleteAndType(inputData[<span class="str">"dataContratto"</span>][<span class="dig">0</span>:<span class="dig">10</span>]+Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"nrContratto"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1.5</span>)
+    tryClickReg(<span class="str">"rrows"</span>, <span class="str">"opzionePros"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+    DeleteAndType(<span class="str">"Fattura Totale"</span>+Key.TAB*<span class="dig">12</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="cmt">#type(usernameCRM+Key.TAB); wait(1)    PROLLY NU TREBE
+</span>    <span class="cmt">#type("24"+Key.TAB*8); wait(1)
+</span>    <span class="cmt">#type(usernameCRM+Key.TAB*4); wait(1)
+</span>    <span class="cmt">#tryClickReg("rrows", "opFail", 5)
+</span>    <span class="cmt">#DeleteAndType(usernameCRM+Key.TAB); wait(1)
+</span>    <span class="cmt">#click(Regions.pagepoint); type(Key.RIGHT*3); wait(0.3)
+</span>    <span class="kw">if</span> verifyExistReg(<span class="str">"rrow3ex"</span>, <span class="str">"ppcfa"</span>, <span class="dig">5</span>):
+        <span class="skw">popup</span>(<span class="str">"B4 CFA"</span>)
+        ppcfa=Regions.getRegion(<span class="str">"rrow3ex"</span>).<span class="skw">find</span>(AutoImages.imgDict[<span class="str">"ppcfa"</span>]); <span class="skw">wait</span>(<span class="dig">1</span>)
+        equals = verifyLineValues([CFA], [<span class="dig">0</span>, <span class="dig">8</span>], <span class="str">"billppStart"</span>, ppcfa)
+
+    <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.PAGE_DOWN); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"nuovo"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"cognome"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.2</span>)
+    pp=Regions.getRegion(<span class="str">"rrow1"</span>).<span class="skw">find</span>(AutoImages.imgDict[<span class="str">"selectPopUp"</span>]); <span class="skw">wait</span>(<span class="dig">1</span>)
+    verifyLineValues([inputData[<span class="str">"cf"</span>]], [<span class="dig">3</span>, <span class="dig">14</span>], <span class="str">"refppStart"</span>, pp)
+
+    <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.PAGE_DOWN); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">11</span>, <span class="dig">28</span>, <span class="dig">8</span>):
+        tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"tipologiaRef"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+        tryClickReg(<span class="str">"rrow3"</span>, <span class="str">"selectPopUp"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">type</span>(Key.TAB*i); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">type</span>(Key.ENTER); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.PAGE_UP); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"indirizzi"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.PAGE_DOWN); <span class="skw">wait</span>(<span class="dig">1</span>)
+
+    selects = Regions.getRegion(<span class="str">"rrow2"</span>).nearby().findAll(AutoImages.imgDict[<span class="str">"selectPopUp2"</span>])
+    sorted_selects = sorted(selects, key=<span class="kw">lambda</span> m:m.y)
+    <span class="kw">for</span> ctri <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">4</span>):
+        <span class="skw">click</span>(sorted_selects[ctri]); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="kw">if</span>(ctri%<span class="dig">2</span>==<span class="dig">0</span>):
+            verifyLineValues([inputData[<span class="str">"comuneSedeLegale2"</span>],
+                        inputData[<span class="str">"partTopSedeLegale"</span>]+ <span class="str">" "</span> +inputData[<span class="str">"viaSedeLegale"</span>]+ <span class="str">" "</span> +inputData[<span class="str">"civicoSedeLegale"</span>]]
+                    , [<span class="dig">1</span>, <span class="dig">7</span>, <span class="dig">0</span>], <span class="str">"indppStart"</span>, sorted_selects[ctri], <span class="str">"capclear"</span>)
+        <span class="kw">else</span>:
+            verifyLineValues([inputData[<span class="str">"cf"</span>], inputData[<span class="str">"nome"</span>]], [<span class="dig">0</span>, <span class="dig">1</span>, <span class="dig">25</span>], <span class="str">"refppStart"</span>,
+                    sorted_selects[ctri], <span class="str">"capclear"</span>)
+    selects = Regions.getRegion(<span class="str">"rrow2"</span>).right().findAll(AutoImages.imgDict[<span class="str">"selectPopUp2"</span>])
+    sorted_selects = sorted(selects, key=<span class="kw">lambda</span> m:m.y)
+    <span class="kw">for</span> ctri2 <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">2</span>):
+        verifyLineValues([inputData[<span class="str">"cf"</span>], inputData[<span class="str">"nome"</span>]], [<span class="dig">0</span>, <span class="dig">1</span>, <span class="dig">25</span>], <span class="str">"refppStart"</span>,
+                 sorted_selects[ctri2], <span class="str">"capclear"</span>)
+
+    <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.UP*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tryClickReg(<span class="str">"rrows"</span>, <span class="str">"offerte"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"nuovo"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+    <span class="kw">if</span> len(getTipoVendita(inputData[<span class="str">"tipovendita"</span>]))&gt;<span class="dig">9</span>:
+        <span class="skw">type</span>(<span class="str">"OFF_08_00000079"</span>+Key.TAB); <span class="skw">wait</span>(<span class="dig">7</span>)
+    <span class="kw">else</span>:
+        <span class="skw">type</span>(<span class="str">"OFF_08_00000058"</span>+Key.TAB); <span class="skw">wait</span>(<span class="dig">7</span>)
+    <span class="skw">type</span>(Key.TAB*<span class="dig">7</span>+<span class="str">"CD"</span>+Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.PAGE_UP*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+
+    <span class="skw">popup</span>(<span class="str">"B4 CONFERMA"</span>)
+    tryClickReg(<span class="str">"rrows"</span>, <span class="str">"conferma"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">4</span>)
+    <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.PAGE_DOWN); <span class="skw">wait</span>(<span class="dig">1</span>)
+
+<span class="kw">def</span> ordini():<span class="cmt">#TIM TUTTO BUSINESS</span>
+    <span class="kw">if</span> <span class="kw">not</span> verifyExistReg(<span class="str">"rrows"</span>, <span class="str">"ordiniSel"</span>, <span class="dig">5</span>):
+        tryClickReg(<span class="str">"rrows"</span>, <span class="str">"ordini"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"nuovo"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">5</span>)
+    DeleteAndType(<span class="str">"LOTTO"</span>+Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">type</span>(Key.TAB*<span class="dig">2</span>+inputData[<span class="str">"dataContratto"</span>][<span class="dig">0</span>:<span class="dig">10</span>]+Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"condiceOrdine"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+    tryClickReg(<span class="str">"rrow3ex"</span>, <span class="str">"pisi"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    DeleteAndType(<span class="str">"SI"</span>+Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.PAGE_DOWN); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"nuovoServ"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+    <span class="skw">type</span>(Key.TAB*<span class="dig">7</span>+<span class="str">"RICARI"</span>); <span class="skw">wait</span>(<span class="dig">0.2</span>)
+    tryClickReg(<span class="str">"rwindow"</span>, <span class="str">"esegui"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tryClickReg(<span class="str">"rrow3ex"</span>, <span class="str">"clickPopUp"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">5</span>)
+    tryClickReg(<span class="str">"rrows"</span>, <span class="str">"configura"</span>, <span class="dig">30</span>); <span class="skw">wait</span>(<span class="dig">5</span>)
+    <span class="skw">type</span>(Key.ENTER); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="kw">if</span> verifyExistReg(<span class="str">"rmid"</span>, <span class="str">"secyes"</span>, <span class="dig">5</span>):
+        tryClickReg(<span class="str">"rmid"</span>, <span class="str">"secyes"</span>, <span class="dig">3</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"iniziative"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">3</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"tipovendita"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">type</span>(getTipoVendita(inputData[<span class="str">"tipovendita"</span>])+Key.ENTER); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    <span class="skw">type</span>(Key.TAB+<span class="str">"1"</span>)
+    <span class="skw">popup</span>(<span class="str">"NEED TO DO DIS U!"</span>)
+    tryClickReg(<span class="str">"rrow2"</span>, <span class="str">"aggiungi"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tryClickReg(<span class="str">"rrow3ex"</span>, <span class="str">"conferma"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">5</span>)
+
+    <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.PAGE_DOWN); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"datiSpedizione"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.PAGE_DOWN); <span class="skw">wait</span>(<span class="dig">1</span>)
+    selects = Regions.getRegion(<span class="str">"rrow2"</span>).findAll(AutoImages.imgDict[<span class="str">"selectPopUp2"</span>])
+    sorted_selects = sorted(selects, key=<span class="kw">lambda</span> m:m.y)
+    verifyLineValues([inputData[<span class="str">"comuneSedeLegale2"</span>],
+                inputData[<span class="str">"partTopSedeLegale"</span>]+ <span class="str">" "</span> +inputData[<span class="str">"viaSedeLegale"</span>]+ <span class="str">" "</span> +inputData[<span class="str">"civicoSedeLegale"</span>]]
+            , [<span class="dig">1</span>, <span class="dig">7</span>, <span class="dig">0</span>], <span class="str">"indppStart"</span>, sorted_selects[<span class="dig">0</span>], <span class="str">"capclear"</span>)
+    verifyLineValues([inputData[<span class="str">"cf"</span>]], [<span class="dig">3</span>, <span class="dig">14</span>], <span class="str">"refppStart"</span>, sorted_selects[<span class="dig">1</span>], <span class="str">"capclear"</span>)
+    DeleteAndType(inputData[<span class="str">"prefissoTelFisso"</span>]+inputData[<span class="str">"telFisso"</span>]+<span class="str">r"/"</span>+inputData[<span class="str">"prefissoCelular"</span>]+inputData[<span class="str">"celular"</span>]+Key.TAB)
+    <span class="cmt">#DeleteAndType(inputData["prefissoTelFisso"]+inputData["telFisso"]+r"&amp;"+inputData["prefissoCelular"]+inputData["celular"]+Key.TAB)
+</span>
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"attivita"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1.5</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"nuovo"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+    <span class="skw">type</span>(<span class="str">"VERBAL ORDERING"</span>+Key.TAB); <span class="skw">wait</span>(<span class="dig">2</span>)
+    <span class="skw">type</span>(Key.TAB*<span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    <span class="skw">type</span>(<span class="str">"IVR "</span>+inputData[<span class="str">"ivr"</span>]+Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+    tab(-<span class="dig">6</span>)
+    <span class="skw">type</span>(<span class="str">"Completata"</span>+Key.TAB); <span class="skw">wait</span>(<span class="dig">1</span>)
+
+    <span class="kw">if</span> <span class="kw">not</span> ftpCopyPDF(inputData[<span class="str">"ragioneSociale"</span>], inputData[<span class="str">"cc"</span>], inputData[<span class="str">"dataContratto"</span>]):
+        <span class="kw">if</span> inputData[<span class="str">"giuridica"</span>]!=<span class="str">"ditta"</span>:
+            <span class="kw">raise</span> Exception(<span class="str">"Cannot find PDF for forma giuridica!"</span>)
+    <span class="kw">else</span>:
+        tryClickReg(<span class="str">"rrows"</span>, <span class="str">"documenti"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"allegaFile"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        tryClickReg(<span class="str">"rwindow"</span>, <span class="str">"repozitory"</span>, <span class="dig">7</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">type</span>(Key.TAB*<span class="dig">7</span>+Key.DOWN+Key.UP); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="kw">while</span>(True):
+            <span class="skw">type</span>(Key.TAB)
+            t=GetText()
+            <span class="kw">if</span> t==<span class="str">""</span>:
+                <span class="skw">type</span>(Key.ESC)
+                <span class="kw">raise</span> Exception(<span class="str">"Cannot find File in Repozitory!"</span>)
+            <span class="kw">if</span> inputData[<span class="str">"ragioneSociale"</span>] <span class="kw">in</span> t:
+                <span class="skw">type</span>(Key.ENTER*<span class="dig">2</span>)
+                <span class="kw">break</span>
+            <span class="kw">else</span>:
+                <span class="skw">type</span>(Key.TAB*<span class="dig">7</span>+Key.DOWN); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="skw">wait</span>(<span class="dig">3</span>); <span class="skw">type</span>(Key.TAB*<span class="dig">6</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(<span class="str">"VISURA CAMERALE"</span>+Key.ENTER); <span class="skw">wait</span>(<span class="dig">2</span>)
+
+    <span class="skw">click</span>(Regions.pagepoint); <span class="skw">type</span>(Key.PAGE_UP*<span class="dig">2</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+    trydClickReg(<span class="str">"rrow1"</span>, <span class="str">"condiceOrdine2"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    cdiceOrdine=GetText(); <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    <span class="kw">return</span> cdiceOrdine
+
+<span class="kw">def</span> finishInvio():
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"invio"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">10</span>)
+    tryClickReg(<span class="str">"rrow1"</span>, <span class="str">"continua"</span>, <span class="dig">5</span>); <span class="skw">wait</span>(<span class="dig">2</span>)
+</pre>
+</body>
+</html>

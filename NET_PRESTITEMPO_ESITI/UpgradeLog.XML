@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="PrestitempoEsiti">
+</Property><Property Name="Solution File" Value="D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti.sln">
+</Property><Property Name="User Options File" Value="D:\NET_PRESTITEMPO_ESITI\PrestitempoEsiti.suo">
+</Property><Property Name="Date" Value="Monday, August 26, 2013">
+</Property><Property Name="Time" Value="13:50 PM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="PrestitempoEsiti.sln" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti.sln">
+</Event><Event ErrorLevel="0" Project="" Source="PrestitempoEsiti.suo" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti.suo">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\PrestitempoEsiti.csproj" Description="Project file successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\PrestitempoEsiti.csproj">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\PrestitempoEsiti.csproj.user" Description="Project user file successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\PrestitempoEsiti.csproj.user">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\Automation.cs" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\Automation.cs">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\Configurazione.cs" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\Configurazione.cs">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\Configurazione.Designer.cs" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\Configurazione.Designer.cs">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\Logger.cs" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\Logger.cs">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\ReportMonForm.cs" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\ReportMonForm.cs">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\ReportMonForm.Designer.cs" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\ReportMonForm.Designer.cs">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\Program.cs" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\Program.cs">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\Properties\AssemblyInfo.cs" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\Properties\Resources.Designer.cs" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\Properties\Settings.Designer.cs" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\Utils\ConfigUtils.cs" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\Utils\ConfigUtils.cs">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\Utils\ExcelUtils.cs" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\Utils\ExcelUtils.cs">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\Utils\MailUtils.cs" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\Utils\MailUtils.cs">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\Utils\SQLUtil.cs" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\Utils\SQLUtil.cs">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\App.config" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\App.config">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\Properties\Settings.settings" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\Images\semaphore_green.png" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\Images\semaphore_green.png">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\Images\semaphore_red.png" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\Images\semaphore_red.png">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\Configurazione.resx" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\Configurazione.resx">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\Properties\Resources.resx" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\ReportMonForm.resx" Description="File successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestitempoEsiti\ReportMonForm.resx">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\PrestitempoEsiti.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="PrestitempoEsiti" Source="PrestitempoEsiti\PrestitempoEsiti.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="PrestiTempoEsitiSetup.vdproj" Source="PrestiTempoEsitiSetup\PrestiTempoEsitiSetup.vdproj" Description="Project file successfully backed up as D:\NET_PRESTITEMPO_ESITI\Backup\PrestiTempoEsitiSetup\PrestiTempoEsitiSetup.vdproj">
+</Event><Event ErrorLevel="0" Project="" Source="PrestitempoEsiti.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="PrestitempoEsiti.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="PrestitempoEsiti" Source="PrestitempoEsiti\PrestitempoEsiti.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <appSettings>
+    <!--MAIL SETTINGS-->
+    <add key="MailServer" value="smtp.gmail.com"/>
+    <add key="CaricoAddress" value="i.delgiudice@intellcredit.it;a.fratini@intellcredit.it"/>
+    <add key ="PostAddress" value ="a.munteanu@software-dep.net"/>
+    <!-- <add key="PostAddress" value="i.delgiudice@intellcredit.it;a.fratini@intellcredit.it"/>-->
+    <add key="ServerPort" value="587"/>
+    <add key="ServerSecurity" value="true"/>
+    <add key="SenderAddress" value="o.martinas@software-dep.net"/>
+    <add key="SenderPassword" value="superoctav"/>
+
+    <!--<add key="SenderAddress" value="a.costinas@software-dep.net"/>
+    <add key="SenderPassword" value="!@#dudu123"/>-->
+    <!--GENERAL SETTINGS-->
+    <add key = "Day" value="Giovedi"/>
+    <add key ="Hours" value ="15"/>
+    <add key ="Minutes" value="6"/>
+    <add key ="LogPath" value=""/>
+    <add key ="ExcelPath" value=""/>
+    <add key ="Days" value="10;20"/>
+
+    <!--WebSite SETTINGS-->
+    <add key="WebSiteUser" value="pt009229"/>
+    <add key="WebSitePassword" value="2gestion"/>
+
+    <!--SQL SETTINGS-->
+    <add key="SQLServer" value="192.168.0.236"/>
+    <add key="SQLDatabase" value="SERVIZII"/>
+    <add key="SQLUser" value="ionel"/>
+    <add key="SQLPassword" value="ionel!!"/>
+    <add key ="TrustedConnection" value ="false"/>
+
+    <add key="MailBody" value=""/>
+    <add key="MailSubject" value=""/>
+  </appSettings>
+</configuration>
