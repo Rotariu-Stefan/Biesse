@@ -86,7 +86,7 @@ reload(AutoRegions)
 myImages = AutoImages()
 myRegions = AutoRegions()
 
-director = <span class="str">"C:\\BSS\\EnelSiebel\\SV\\Log\\"</span> + strftime(<span class="str">"Logger_%d_%m_%Y"</span>) + <span class="str">"\\"</span>
+director = <span class="str">"XX"</span> + strftime(<span class="str">"Logger_%d_%m_%Y"</span>) + <span class="str">"\\"</span>
 fisier = director + <span class="str">"Log.txt"</span>
 
 
@@ -96,8 +96,8 @@ fisier = director + <span class="str">"Log.txt"</span>
     <span class="kw">if</span> <span class="kw">not</span> os.path.exists(fisier):
         fl = open(fisier, <span class="str">"wb"</span>)
         fl.close()
-    <span class="kw">if</span> <span class="kw">not</span> os.path.exists(<span class="str">"C:\\BSS\\EnelSiebel\\SV\\Output\\siebel_outputSV.csv"</span>):
-        fo = open(<span class="str">"C:\\BSS\\EnelSiebel\\SV\\Output\\siebel_outputSV.csv"</span>, <span class="str">"wb"</span>)
+    <span class="kw">if</span> <span class="kw">not</span> os.path.exists(<span class="str">"XX"</span>):
+        fo = open(<span class="str">"XX"</span>, <span class="str">"wb"</span>)
         fo.close()
 
 <span class="kw">def</span> CaptureScreen():
@@ -110,7 +110,7 @@ fisier = director + <span class="str">"Log.txt"</span>
     myfile.close()
 
 <span class="kw">def</span> writeToOutput(row):
-    <span class="kw">with</span> open(<span class="str">'C:\\BSS\\EnelSiebel\\SV\\Output\\siebel_outputSV.csv'</span>, <span class="str">'ab'</span>) <span class="kw">as</span> fout:
+    <span class="kw">with</span> open(<span class="str">'XX'</span>, <span class="str">'ab'</span>) <span class="kw">as</span> fout:
         writer = csv.writer(fout, delimiter=<span class="str">'\t'</span>)
         writer.writerow(row)
 
@@ -193,7 +193,7 @@ fisier = director + <span class="str">"Log.txt"</span>
     <span class="kw">try</span>:
         writeToLog(<span class="str">"CRM loading..."</span>)
         <span class="kw">if</span> <span class="kw">not</span> App.focus(<span class="str">"Siebel Energy"</span>):
-            browsercrm  = App.open(<span class="str">"C:\Program Files (x86)\Internet Explorer\iexplore.exe http://crm-ml.risorse.enel/eenergy_enu/start.swe"</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
+            browsercrm  = App.open(<span class="str">"XX"</span>); <span class="skw">wait</span>(<span class="dig">1</span>)
         <span class="kw">if</span> myImages.waitImage(<span class="str">"regScreen"</span>, <span class="str">"crmLoginPic"</span>, <span class="dig">10</span>) == <span class="str">"OK"</span>:
             <span class="skw">type</span>(<span class="str">"RISORSE\AE23032"</span> + Key.TAB + <span class="str">"AvTa6Y$g"</span> + Key.ENTER); <span class="skw">wait</span>(<span class="dig">10</span>)
         <span class="kw">if</span> myImages.waitImage(<span class="str">"regScreen"</span>, <span class="str">"ieSiebel"</span>, <span class="dig">3</span>) == <span class="str">"OK"</span>:
@@ -265,9 +265,9 @@ tErr=<span class="dig">0</span>
     <span class="kw">global</span> tErr
 
     writeToLog(<span class="str">"Automation started!"</span>)
-    <span class="kw">with</span> open(<span class="str">'C:\\BSS\\EnelSiebel\\SV\\inputFULL.csv'</span>, <span class="str">'rb'</span>) <span class="kw">as</span> fin:
+    <span class="kw">with</span> open(<span class="str">'XX'</span>, <span class="str">'rb'</span>) <span class="kw">as</span> fin:
         reader = csv.reader(fin, delimiter=<span class="str">','</span>)
-        otest=open(<span class="str">'C:\\BSS\\EnelSiebel\\SV\\Output\\siebel_outputSV.csv'</span>, <span class="str">'rb'</span>)
+        otest=open(<span class="str">'XX'</span>, <span class="str">'rb'</span>)
 
         oreader = csv.reader(otest, delimiter=<span class="str">'\t'</span>)
         rowSofar = <span class="dig">0</span>

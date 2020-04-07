@@ -14,8 +14,8 @@ from AutoRegions import *
 myImages = AutoImages()
 myRegions = AutoRegions()
 
-director = "C:\\BSS\\EnelSiebel\\SV\\Log\\" + strftime("Logger_%d_%m_%Y") + "\\"
-fisier = director + "Log.txt"
+director = "XX" + strftime("XX") + "\\"
+fisier = "XX"
 
 
 def MakeFiles():
@@ -24,8 +24,8 @@ def MakeFiles():
     if not os.path.exists(fisier):
         fl = open(fisier, "wb")
         fl.close()
-    if not os.path.exists("C:\\BSS\\EnelSiebel\\SV\\Output\\siebel_outputSV.csv"):
-        fo = open("C:\\BSS\\EnelSiebel\\SV\\Output\\siebel_outputSV.csv", "wb")
+    if not os.path.exists("XX"):
+        fo = open("XX", "wb")
         fo.close()
 
 def CaptureScreen():
@@ -38,7 +38,7 @@ def writeToLog(mesaj):
     myfile.close()
 
 def writeToOutput(row):
-    with open('C:\\BSS\\EnelSiebel\\SV\\Output\\siebel_outputSV.csv', 'ab') as fout:
+    with open('XX', 'ab') as fout:
         writer = csv.writer(fout, delimiter='\t')
         writer.writerow(row)
 
@@ -120,8 +120,8 @@ def telSwitch(oData):
 def loadCRM():
     try:
         writeToLog("CRM loading...")
-        if not App.focus("Siebel Energy"):
-            browsercrm  = App.open("C:\Program Files (x86)\Internet Explorer\iexplore.exe http://crm-ml.risorse.enel/eenergy_enu/start.swe"); wait(1)
+        if not App.focus("XX"):
+            browsercrm  = App.open("XX"); wait(1)
         if myImages.waitImage("regScreen", "crmLoginPic", 10) == "OK":
             type("RISORSE\AE23032" + Key.TAB + "AvTa6Y$g" + Key.ENTER); wait(10)
         if myImages.waitImage("regScreen", "ieSiebel", 3) == "OK":
@@ -193,9 +193,9 @@ def Automation(startRow=0, finalRow=-1, errMax=50):
     global tErr
 
     writeToLog("Automation started!")
-    with open('C:\\BSS\\EnelSiebel\\SV\\inputFULL.csv', 'rb') as fin:
+    with open('XX', 'rb') as fin:
         reader = csv.reader(fin, delimiter=',')
-        otest=open('C:\\BSS\\EnelSiebel\\SV\\Output\\siebel_outputSV.csv', 'rb')
+        otest=open('XX', 'rb')
         
         oreader = csv.reader(otest, delimiter='\t')        
         rowSofar = 0
